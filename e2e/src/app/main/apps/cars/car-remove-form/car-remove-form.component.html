@@ -1,0 +1,101 @@
+<div class="dialog-content-wrapper">
+    <mat-toolbar matDialogTitle class="mat teal-300 m-0">
+        <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
+            <span class="title dialog-title">{{ 'PAGES.APPS.CARS.REMOVECONFIRM' | translate }}</span>
+            <button mat-icon-button (click)="matDialogRef.close()" aria-label="Close dialog">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-toolbar-row>
+    </mat-toolbar>
+  
+    <div mat-dialog-content class="p-24 pb-0 m-0" fusePerfectScrollbar>
+  
+        <form [formGroup]="removeForm">
+            <span>{{ 'PAGES.APPS.CARS.REMOVEQUESTION' | translate }}</span>
+            <section class="py-8" *ngIf="removeData && removeData.withSameManufacturer">
+                <label>{{ 'PAGES.APPS.CARS.MANUFACTURER' | translate }}: </label>
+                <mat-radio-group formControlName="manufacturerIsDelete">
+                    <mat-radio-button class="pl-8" value="true" [checked]="removeForm.controls['manufacturerIsDelete'].value == true"> 
+                        {{ 'COMMONACTIONS.YES' | translate }} 
+                    </mat-radio-button>
+                    <mat-radio-button class="pl-8" value="false" [checked]="removeForm.controls['manufacturerIsDelete'].value == false"> 
+                        {{ 'COMMONACTIONS.NO' | translate }} 
+                    </mat-radio-button>
+                </mat-radio-group>
+            </section>
+
+                <section class="py-8" *ngIf="removeData && removeData.withSameTyp">
+                    <label>{{ 'PAGES.APPS.CARS.TYP' | translate }}: </label>
+                    <mat-radio-group formControlName="typIsDelete">
+                        <mat-radio-button class="pl-8" value="true" [checked]="removeForm.controls['typIsDelete'].value == true"> 
+                            {{ 'COMMONACTIONS.YES' | translate }} 
+                        </mat-radio-button>
+                        <mat-radio-button class="pl-8" value="false" [checked]="removeForm.controls['typIsDelete'].value == false"> 
+                            {{ 'COMMONACTIONS.NO' | translate }} 
+                        </mat-radio-button>
+                    </mat-radio-group>
+                </section>
+
+                <section class="py-8" *ngIf="removeData && removeData.withSameFuel">
+                    <label>{{ 'PAGES.APPS.CARS.FUEL' | translate }}: </label>
+                    <mat-radio-group formControlName="fuelIsDelete">
+                        <mat-radio-button class="pl-8" value="true" [checked]="removeForm.controls['fuelIsDelete'].value == true"> 
+                            {{ 'COMMONACTIONS.YES' | translate }} 
+                        </mat-radio-button>
+                        <mat-radio-button class="pl-8" value="false" [checked]="removeForm.controls['fuelIsDelete'].value == false"> 
+                            {{ 'COMMONACTIONS.NO' | translate }} 
+                        </mat-radio-button>
+                    </mat-radio-group>
+                </section>
+
+                <section class="py-8" *ngIf="removeData && removeData.withSameEngineOil">
+                    <label>{{ 'PAGES.APPS.CARS.ENGINEOIL' | translate }}: </label>
+                    <mat-radio-group formControlName="engineOilIsDelete">
+                        <mat-radio-button class="pl-8" value="true" [checked]="removeForm.controls['engineOilIsDelete'].value == true"> 
+                            {{ 'COMMONACTIONS.YES' | translate }} 
+                        </mat-radio-button>
+                        <mat-radio-button class="pl-8" value="false" [checked]="removeForm.controls['engineOilIsDelete'].value == false"> 
+                            {{ 'COMMONACTIONS.NO' | translate }} 
+                        </mat-radio-button>
+                    </mat-radio-group>
+                </section>
+
+                <section class="py-8" *ngIf="removeData && removeData.withSameGearOil">
+                    <label>{{ 'PAGES.APPS.CARS.GEAROIL' | translate }}: </label>
+                    <mat-radio-group formControlName="gearOilIsDelete">
+                        <mat-radio-button class="pl-8" value="true" [checked]="removeForm.controls['gearOilIsDelete'].value == true"> 
+                            {{ 'COMMONACTIONS.YES' | translate }} 
+                        </mat-radio-button>
+                        <mat-radio-button class="pl-8" value="false" [checked]="removeForm.controls['gearOilIsDelete'].value == false"> 
+                            {{ 'COMMONACTIONS.NO' | translate }} 
+                        </mat-radio-button>
+                    </mat-radio-group>
+                </section>
+
+                <section class="py-8" *ngIf="removeData && removeData.withSameUser">
+                    <label>{{ 'PAGES.APPS.CARS.USER' | translate }}: </label>
+                    <mat-radio-group formControlName="userIsDelete">
+                        <mat-radio-button class="pl-8" value="true" [checked]="removeForm.controls['userIsDelete'].value == true"> 
+                            {{ 'COMMONACTIONS.YES' | translate }} 
+                        </mat-radio-button>
+                        <mat-radio-button class="pl-8" value="false" [checked]="removeForm.controls['userIsDelete'].value == false"> 
+                            {{ 'COMMONACTIONS.CANCEL' | translate }} 
+                        </mat-radio-button>
+                    </mat-radio-group>
+                </section>
+        </form>
+  
+    </div>
+  
+    <div mat-dialog-actions class="m-0 p-16" fxLayout="row" fxLayoutAlign="end center">
+  
+        <button mat-raised-button class="mat teal-300 mr-16" (click)="matDialogRef.close(removeForm)" [disabled]="removeForm.invalid">
+            {{ 'COMMONACTIONS.YES' | translate }}
+        </button>
+        <button mat-button (click)="matDialogRef.close()">
+            {{ 'COMMONACTIONS.CANCEL' | translate }}
+        </button>
+
+    </div>
+  </div>
+  

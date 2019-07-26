@@ -1,0 +1,67 @@
+<div id="cars" class="page-layout simple left-sidebar inner-sidebar inner-scroll">
+
+  <div class="header teal-300 p-16 p-sm-24" fxLayout="column" fxLayoutAlign="start"
+    fxLayout.gt-xs="row" fxLayoutAlign.gt-xs="space-between center">
+        
+    <div fxLayout="row" fxLayoutAlign="start center">
+      <div class="logo" fxLayout="row" fxLayoutAlign="start center">
+        <span class="logo-text h1">
+          {{ 'NAV.CARGROUPS' | translate }}
+        </span>
+      </div>
+    </div>
+  </div>
+    
+  
+  <div id="blank" class="blank" fusePerfectScrollbar>
+    <div class="mx-48">
+      <div fxLayout="column" fxLayout.gt-sm="row">
+        <app-new-group class="w-100-p my-24"></app-new-group>
+      </div>
+
+      <div *ngFor="let carGroup of carGroups" fxLayout="column" fxLayoutAlign="start" 
+        fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="space-between center">
+        
+        <div class="widget w-100-p">
+          <div class="fuse-card auto-width mb-32">
+            <div class="p-16 pb-0" fxLayout="row wrap" fxLayoutAlign="start end">
+              <div class="pr-16">
+                <div class="h3 secondary-text">{{carGroup.name}}</div>
+              </div>
+            </div>
+          
+            <div class="w-100-p">
+              <mat-table #table [dataSource]="carGroup.carSubgroups" class="my-24">
+
+                <ng-container matColumnDef="name">
+                  <mat-header-cell *matHeaderCellDef>{{ 'PAGES.APPS.CARGROUPS.NAME' | translate }}</mat-header-cell>
+                  <mat-cell *matCellDef="let carSubgroup">
+                    <p class="text-truncate">{{carSubgroup.name}}</p>
+                  </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="cars">
+                  <mat-header-cell *matHeaderCellDef>{{ 'PAGES.APPS.CARGROUPS.CARS' | translate }}</mat-header-cell>
+                  <mat-cell *matCellDef="let carSubgroup">
+                    <ul class="cars">
+                      <li *ngFor="let car of carSubgroup.cars">
+                        {{car.registrationNumber}} ({{car.model}}, {{car.typ.name}}, {{car.manufacturer.name}})
+                      </li>
+                    </ul>
+                  </mat-cell>
+                </ng-container>
+
+                <mat-header-row *matHeaderRowDef="displayedColumns; sticky:true"></mat-header-row>
+                <mat-row *matRowDef="let car; columns: displayedColumns;" matRipple></mat-row>
+              </mat-table>
+
+              <button mat-raised-button class="teal-300 m-24" (click)="editCarGroup(carGroup)">
+                <span>{{ 'COMMONACTIONS.EDIT' | translate }}</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      
+  </div>
+</div>

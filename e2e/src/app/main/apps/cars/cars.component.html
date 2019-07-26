@@ -1,0 +1,130 @@
+<div id="cars" class="page-layout simple left-sidebar inner-sidebar inner-scroll">
+
+    <div class="header teal-300 p-16 p-sm-24" fxLayout="column" fxLayoutAlign="start"
+        fxLayout.gt-xs="row" fxLayoutAlign.gt-xs="space-between center">
+        
+        <div fxLayout="row" fxLayoutAlign="start center">
+            <div class="logo" fxLayout="row" fxLayoutAlign="start center">
+                <span class="h1" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
+                    {{ 'NAV.CARS' | translate }} 
+                    <span *ngIf="hoverCar"> 
+                        - {{hoverCar.registrationNumber}} - {{hoverCar.model}} - {{hoverCar.typ.name}} - {{hoverCar.manufacturer.name}} 
+                    </span>
+                </span>
+            </div>
+        </div>
+
+        <button mat-raised-button [routerLink]="'/apps/cars/detail/new'" class="fuse-white mt-24 mt-md-0">
+            <span>{{ 'COMMONACTIONS.ADD' | translate }}</span>
+        </button>
+    </div>
+    
+    <div class="content">
+    
+        <div position="left" class="left">
+            <app-car-sidebar [@animate]="{value:'*'}"></app-car-sidebar>
+        </div>
+    
+        <div class="center p-24 pb-56 pr-sm-92" fusePerfectScrollbar>
+    
+            <div class="content">
+                <mat-table #table [dataSource]="dataSource" matSort [@animateStagger]="{value:'50'}" fusePerfectScrollbar>
+    
+                    <ng-container matColumnDef="registrationNumber">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="25%">
+                            {{ 'PAGES.APPS.CARS.REGISTRATIONNUMBER' | translate }}
+                        </mat-header-cell>
+                        <mat-cell *matCellDef="let car" fxFlex="25%">
+                            <p class="text-truncate">{{car.registrationNumber}}</p>
+                        </mat-cell>
+                    </ng-container>
+    
+                    <ng-container matColumnDef="typ">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header fxHide fxShow.gt-xs fxFlex="15%">
+                            {{ 'PAGES.APPS.CARS.TYP' | translate }}
+                        </mat-header-cell>
+                        <mat-cell *matCellDef="let car" fxHide fxShow.gt-xs fxFlex="15%">
+                            <p class="text-truncate">
+                                {{car.typ.name}}
+                            </p>
+                        </mat-cell>
+                    </ng-container>
+    
+                    <ng-container matColumnDef="manufacturer">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header fxHide fxShow.gt-xs fxFlex="15%">
+                            {{ 'PAGES.APPS.CARS.MANUFACTURER' | translate }}
+                        </mat-header-cell>
+                        <mat-cell *matCellDef="let car" fxHide fxShow.gt-xs fxFlex="15%">
+                            <p class="text-truncate">
+                                {{car.manufacturer.name}}
+                            </p>
+                        </mat-cell>
+                    </ng-container>
+    
+                    <ng-container matColumnDef="chassisNumber">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header fxHide fxShow.gt-sm fxFlex="20%">
+                            {{ 'PAGES.APPS.CARS.CHASSISNUMBER' | translate }}
+                        </mat-header-cell>
+                        <mat-cell *matCellDef="let car" fxHide fxShow.gt-sm fxFlex="20%">
+                            <p class="text-truncate">
+                                {{car.chassisNumber}}
+                            </p>
+                        </mat-cell>
+                    </ng-container>
+    
+                    <ng-container matColumnDef="decommissioned">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header fxHide fxShow.gt-sm fxFlex="10%">
+                            {{ 'PAGES.APPS.CARS.DECOMMISSIONED' | translate }}
+                        </mat-header-cell>
+                        <mat-cell *matCellDef="let car" fxHide fxShow.gt-sm fxFlex="10%">
+                            <p class="text-truncate">
+                                <mat-icon *ngIf="car.decommissioned" class="active-icon green-600 s-16">check</mat-icon>
+                                <mat-icon *ngIf="!car.decommissioned" class="active-icon red-500 s-16">close</mat-icon>
+                            </p>
+                        </mat-cell>
+                    </ng-container>
+    
+                    <ng-container matColumnDef="buttons">
+                        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                            <mat-cell *matCellDef="let car">
+                                <div fxLayoutAlign="end center">
+                    
+                                    <button mat-icon-button [matMenuTriggerFor]="moreMenu" aria-label="More"
+                                            (click)="$event.stopPropagation();">
+                                        <mat-icon class="secondary-text">more_vert</mat-icon>
+                                    </button>
+                    
+                                    <mat-menu #moreMenu="matMenu">
+                                        <button mat-menu-item aria-label="edit" (click)="editCar(car.id)">
+                                            <mat-icon>edit</mat-icon>
+                                            <span>{{ 'COMMONACTIONS.EDIT' | translate }}</span>
+                                        </button>
+                                        <button mat-menu-item aria-label="remove" (click)="deleteCar(car.id)">
+                                            <mat-icon>delete</mat-icon>
+                                            <span>{{ 'COMMONACTIONS.REMOVE' | translate }}</span>
+                                        </button>
+                                    </mat-menu>
+                                </div>
+                    
+                            </mat-cell>
+                        </ng-container>
+                    <mat-header-row *matHeaderRowDef="displayedColumns; sticky:true"></mat-header-row>
+    
+                    <mat-row *matRowDef="let car; columns: displayedColumns;"
+                            class="car"
+                            matRipple
+                            [routerLink]="'/apps/cars/detail/'+car.id"
+                            (mouseenter)="onHovering(car)" (mouseleave)="onUnovering(car)">
+                    </mat-row>
+                </mat-table>
+    
+                <mat-paginator #paginator
+                    [length]="dataSource.filteredData.length"
+                    [pageIndex]="0"
+                    [pageSize]="10"
+                    [pageSizeOptions]="[5, 10, 25, 100]">
+                </mat-paginator>
+            </div>
+        </div>
+    </div>
+</div>

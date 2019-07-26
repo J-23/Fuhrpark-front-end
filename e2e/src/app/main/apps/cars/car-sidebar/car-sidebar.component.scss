@@ -1,0 +1,52 @@
+@import "src/@fuse/scss/fuse";
+
+:host {
+    display: flex;
+    flex-direction: column;
+    flex: 1 0 auto;
+    height: 100%;
+}
+
+::ng-deep .mat-expansion-panel-body {
+    max-height: 45vh !important;
+    overflow-y: scroll !important; 
+    overflow-x: hidden;
+}
+
+.example-radio-group {
+    display: inline-flex;
+    flex-direction: column;
+  }
+  
+  .example-radio-button {
+    margin: 5px;
+  }
+
+.common-section {
+    display: flex;
+    align-content: center;
+    align-items: center;
+}
+
+.common-margin {
+    margin-left: 3%;
+}
+
+.min-max-field {
+    width: 47%;
+}
+
+.serach-div {
+    height: 55px;
+}
+
+@include media-breakpoint('sm') {
+
+    .search-panel {
+        display: none;
+    }
+}
+
+.select-field {
+    width: 200px;
+}

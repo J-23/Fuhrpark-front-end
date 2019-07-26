@@ -1,0 +1,31 @@
+<form name="carBusinessForm" [formGroup]="carBusinessForm" class="car w-100-p" fxLayout="column" fxFlex>
+
+  <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
+    <mat-label>{{'PAGES.APPS.CARS.LOCATION' | translate}}</mat-label> 
+    <input matInput formControlName="location">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" floatLabel="always">
+    <mat-label>{{'PAGES.APPS.CARS.USER' | translate}}</mat-label>
+    <mat-select matNativeControl formControlName="user" [compareWith]="userCompare">
+      <mat-option *ngFor="let user of users" [value]="user">{{user.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div fxLayout="row" fxLayoutAlign="space-between">
+
+    <mat-form-field appearance="outline" fxFlex="47">
+      <mat-label>{{'PAGES.APPS.CARS.CREATEDATE' | translate}}</mat-label>
+      <input matInput [matDatepicker]="createDate" formControlName="createDate" required>
+      <mat-datepicker-toggle matSuffix [for]="createDate"></mat-datepicker-toggle>
+      <mat-datepicker #createDate></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" fxFlex="47">
+      <mat-label>{{'PAGES.APPS.CARS.UPDATEDATE' | translate}}</mat-label>
+      <input matInput [matDatepicker]="updateDate" formControlName="updateDate">
+      <mat-datepicker-toggle matSuffix [for]="updateDate"></mat-datepicker-toggle>
+      <mat-datepicker #updateDate></mat-datepicker>
+    </mat-form-field>
+  </div>
+</form>

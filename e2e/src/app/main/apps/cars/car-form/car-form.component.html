@@ -1,0 +1,82 @@
+<div id="car" class="page-layout carded fullwidth inner-scroll">
+
+  <div class="top-bg teal-300"></div>
+  
+  <div class="center">
+
+    <div class="header teal-300" fxLayout="row" fxLayoutAlign="space-between center">
+
+      <div fxLayout="row" fxLayoutAlign="start center">
+
+        <button mat-icon-button class="mr-0 mr-sm-16" [routerLink]="'/apps/cars/list'">
+          <mat-icon>arrow_back</mat-icon>
+        </button>
+
+        <div fxLayout="column" fxLayoutAlign="start start" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
+          <div class="h2" *ngIf="pageType ==='edit' && car">
+            {{car.registrationNumber}} - {{car.model}} - {{car.typ.name}} - {{car.manufacturer.name}} 
+          </div>
+          <div class="h2" *ngIf="pageType ==='new'">
+              {{ 'PAGES.APPS.CARS.NEWCAR' | translate }}
+          </div>
+          <div class="subtitle secondary-text">
+            <span>{{ 'PAGES.APPS.CARS.CARDETAIL' | translate }}</span>
+          </div>
+        </div>
+      </div>
+      
+
+      <button mat-raised-button class="save-car-button" [disabled]="carGeneralForm.invalid || carSpecForm.invalid || carBusinessForm.invalid"
+      *ngIf="pageType ==='new'" (click)="addCar()">
+        <span>{{ 'COMMONACTIONS.SAVE' | translate }}</span>
+      </button>
+
+      <button mat-raised-button class="save-car-button" [disabled]="carGeneralForm.invalid|| carSpecForm.invalid || carBusinessForm.invalid"
+        *ngIf="pageType ==='edit'" (click)="updateCar()">
+        <span>{{ 'COMMONACTIONS.SAVE' | translate }}</span>
+      </button>
+    </div>
+
+    <div class="content-card">
+      <div class="content">
+          <mat-tab-group>
+            <mat-tab>
+              <ng-template mat-tab-label>{{'PAGES.APPS.CARS.GENERAL' | translate}} 
+                <mat-icon [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}" *ngIf="carGeneralForm.invalid" 
+                  class="example-tab-icon ml-8" color="warn">create</mat-icon>
+                <mat-icon [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}" *ngIf="carGeneralForm.valid" 
+                  class="example-tab-icon ml-8" color="accent">done</mat-icon>
+              </ng-template>
+              <div class="tab-content p-24" fusePerfectScrollbar>
+                <app-car-general [carGeneralForm]="carGeneralForm"></app-car-general>
+              </div>
+            </mat-tab>
+
+            <mat-tab>
+              <ng-template mat-tab-label>{{'PAGES.APPS.CARS.SPEC' | translate}}
+                <mat-icon [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}" *ngIf="carSpecForm.invalid" 
+                  class="example-tab-icon ml-8" color="warn">create</mat-icon>
+                <mat-icon [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}" *ngIf="carSpecForm.valid" 
+                  class="example-tab-icon ml-8" color="accent">done</mat-icon>
+              </ng-template>
+              <div class="tab-content p-24" fusePerfectScrollbar>
+                <app-car-spec [carSpecForm]="carSpecForm"></app-car-spec>
+              </div>
+            </mat-tab>
+
+            <mat-tab>
+              <ng-template mat-tab-label>{{'PAGES.APPS.CARS.BUSINESS' | translate}}
+                <mat-icon [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}" *ngIf="carBusinessForm.invalid" 
+                  class="example-tab-icon ml-8" color="warn">create</mat-icon>
+                <mat-icon [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}" *ngIf="carBusinessForm.valid" 
+                  class="example-tab-icon ml-8" color="accent">done</mat-icon>
+              </ng-template>
+              <div class="tab-content p-24" fusePerfectScrollbar fxLayout="column">
+                  <app-car-business [carBusinessForm]="carBusinessForm"></app-car-business>
+              </div>
+            </mat-tab>
+          </mat-tab-group>
+      </div>
+    </div>
+  </div>
+</div>

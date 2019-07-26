@@ -1,0 +1,244 @@
+<div class="content py-16 search-panel">
+  <div class="nav material2">
+       
+    <div class="m-8 fuse-white">
+      <div class="serach-div">
+        <span class="p-20" fxLayoutAlign="center"> {{ 'PAGES.APPS.CARS.SEARCHPANEL' | translate }}</span>
+      </div>
+           
+          <div class="m-auto" [formGroup]="searchForm">
+            <mat-accordion>
+              <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    {{ 'PAGES.APPS.CARS.GENERAL' | translate }}
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                
+                <mat-form-field appearance="outline">
+                  <mat-label>{{ 'PAGES.APPS.CARS.REGISTRATIONNUMBER' | translate }}</mat-label>
+                  <input matInput formControlName="registrationNumber" (input)="AddSearchAttribute('registrationNumber', 0, 2)">
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                  <mat-label>{{ 'PAGES.APPS.CARS.MODEL' | translate }}</mat-label>
+                  <input matInput formControlName="model" (input)="AddSearchAttribute('model', 3, 2)">
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                  <mat-label>{{ 'PAGES.APPS.CARS.COLOR' | translate }}</mat-label>
+                  <input matInput formControlName="color" (input)="AddSearchAttribute('color', 4, 2)">
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                  <mat-label>{{ 'PAGES.APPS.CARS.CHASSISNUMBER' | translate }}</mat-label>
+                  <input matInput formControlName="chassisNumber" (input)="AddSearchAttribute('chassisNumber', 5, 2)">
+                </mat-form-field>
+
+                <label>{{ 'PAGES.APPS.CARS.DECOMMISSIONED' | translate }}? </label>
+                <mat-radio-group class="example-radio-group" formControlName="decommissioned" (change)="AddSearchAttribute('decommissioned', 6, 3)">
+                  <mat-radio-button class="example-radio-button" value="true"> {{ 'COMMONACTIONS.YES' | translate }} </mat-radio-button>
+                  <mat-radio-button class="example-radio-button" value="false"> {{ 'COMMONACTIONS.NO' | translate }} </mat-radio-button>
+                  <mat-radio-button class="example-radio-button" value="null" [checked]="!searchForm.controls['decommissioned'].value"> {{ 'COMMONACTIONS.BOTH' | translate }} </mat-radio-button>
+                </mat-radio-group>
+
+                <mat-form-field appearance="outline" class="select-field">
+                  <mat-label>{{ 'PAGES.APPS.CARS.TYP' | translate }}</mat-label>
+                  <mat-select formControlName="typId" placeholder="'PAGES.APPS.CARS.TYP' | translate" (selectionChange)="AddSearchAttributeInSelect(1, 3, $event)">
+                    <mat-option [value]="null">All</mat-option>
+                    <mat-option *ngFor="let typ of typs" [value]="typ"> {{typ.name}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="select-field">
+                  <mat-label>{{ 'PAGES.APPS.CARS.MANUFACTURER' | translate }}</mat-label>
+                  <mat-select formControlName="manufacturerId" placeholder="'PAGES.APPS.CARS.MANUFACTURER' | translate" (selectionChange)="AddSearchAttributeInSelect(2, 3, $event)">
+                    <mat-option [value]="null">All</mat-option>
+                    <mat-option *ngFor="let manufacturer of manufacturers" [value]="manufacturer"> {{manufacturer.name}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+
+              </mat-expansion-panel>
+              <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                      {{ 'PAGES.APPS.CARS.SPEC' | translate }}
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+
+                <section class="common-section">
+                  <mat-form-field appearance="outline" class="min-max-field">
+                    <mat-label>{{ 'PAGES.APPS.CARS.MINPERFORMANCE' | translate }}</mat-label>
+                    <input matInput type="number" placeholder="'PAGES.APPS.CARS.MINPERFORMANCE' | translate" formControlName="minPerformance" (input)="AddSearchAttribute('minPerformance', 8, 1)">
+                  </mat-form-field>
+                  <mat-form-field appearance="outline" class="common-margin min-max-field">
+                    <mat-label>{{ 'PAGES.APPS.CARS.MAXPERFORMANCE' | translate }}</mat-label>
+                    <input matInput type="number" placeholder="'PAGES.APPS.CARS.MAXPERFORMANCE' | translate" formControlName="maxPerformance" (input)="AddSearchAttribute('maxPerformance', 8, 0)">
+                  </mat-form-field>
+                </section>
+
+                <section class="common-section">
+                  <mat-form-field appearance="outline" class="min-max-field">
+                    <mat-label>{{ 'PAGES.APPS.CARS.MINENGINEDISPLACEMENT' | translate }}</mat-label>
+                    <input matInput type="number" placeholder="'PAGES.APPS.CARS.MINENGINEDISPLACEMENT' | translate" formControlName="minEngineDisplacement" (input)="AddSearchAttribute('minEngineDisplacement', 9, 1)">
+                  </mat-form-field>
+                  <mat-form-field appearance="outline" class="common-margin min-max-field">
+                    <mat-label>{{ 'PAGES.APPS.CARS.MAXENGINEDISPLACEMENT' | translate }}</mat-label>
+                    <input matInput type="number" placeholder="'PAGES.APPS.CARS.MAXENGINEDISPLACEMENT' | translate" formControlName="maxEngineDisplacement" (input)="AddSearchAttribute('maxEngineDisplacement', 9, 0)">
+                  </mat-form-field>
+                </section>
+
+                <section class="common-section">
+                  <mat-form-field appearance="outline" class="min-max-field">
+                    <mat-label>{{ 'PAGES.APPS.CARS.MINSPEED' | translate }}</mat-label>
+                    <input matInput type="number" placeholder="'PAGES.APPS.CARS.MINSPEED' | translate" formControlName="minSpeed" (input)="AddSearchAttribute('minSpeed', 10, 1)">
+                  </mat-form-field>
+                  <mat-form-field appearance="outline" class="common-margin min-max-field">
+                    <mat-label>{{ 'PAGES.APPS.CARS.MAXSPEED' | translate }}</mat-label>
+                    <input matInput type="number" placeholder="'PAGES.APPS.CARS.MAXSPEED' | translate" formControlName="maxSpeed" (input)="AddSearchAttribute('maxSpeed', 10, 0)">
+                  </mat-form-field>
+                </section>
+
+                <section class="common-section">
+                  <mat-form-field appearance="outline" class="min-max-field">
+                    <mat-label>{{ 'PAGES.APPS.CARS.MINWEIGHT' | translate }}</mat-label>
+                    <input matInput type="number" placeholder="'PAGES.APPS.CARS.MINWEIGHT' | translate " formControlName="minWeight" (input)="AddSearchAttribute('minWeight', 11, 1)">
+                  </mat-form-field>
+                  <mat-form-field appearance="outline" class="common-margin min-max-field">
+                    <mat-label>{{ 'PAGES.APPS.CARS.MAXWEIGHT' | translate }}</mat-label>
+                    <input matInput type="number" placeholder="'PAGES.APPS.CARS.MAXWEIGHT' | translate " formControlName="maxWeight" (input)="AddSearchAttribute('maxWeight', 11, 0)">
+                  </mat-form-field>
+                </section>
+
+                <mat-form-field appearance="outline">
+                  <mat-label>{{ 'PAGES.APPS.CARS.ENGINECODE' | translate }}</mat-label>
+                  <input matInput formControlName="engineCode" (input)="AddSearchAttribute('engineCode', 12, 2)">
+                </mat-form-field>
+
+                <section class="common-section">
+                  <mat-form-field appearance="outline" class="min-max-field">
+                    <mat-label>{{ 'PAGES.APPS.CARS.PRODUCTIONDATEFROM' | translate }}</mat-label>
+                    <input matInput [matDatepicker]="productionDateFrom" placeholder="'PAGES.APPS.CARS.PRODUCTIONDATEFROM' | translate" formControlName="minProductionDate" (dateChange)="AddSearchAttributeByDate(15, 1, $event)">
+                    <mat-datepicker-toggle matSuffix [for]="productionDateFrom"></mat-datepicker-toggle>
+                    <mat-datepicker #productionDateFrom></mat-datepicker>
+                  </mat-form-field>
+                  <mat-form-field appearance="outline" class="common-margin min-max-field">
+                    <mat-label>{{ 'PAGES.APPS.CARS.PRODUCTIONDATETO' | translate }}</mat-label>
+                    <input matInput [matDatepicker]="productionDateTo" placeholder="'PAGES.APPS.CARS.PRODUCTIONDATETO' | translate" formControlName="maxProductionDate" (dateChange)="AddSearchAttributeByDate(15, 0, $event)">
+                    <mat-datepicker-toggle matSuffix [for]="productionDateTo"></mat-datepicker-toggle>
+                    <mat-datepicker #productionDateTo></mat-datepicker>
+                  </mat-form-field>
+                </section>
+
+                <section class="common-section">
+                  <mat-form-field appearance="outline" class="min-max-field">
+                    <mat-label>{{ 'PAGES.APPS.CARS.REGISRATIONDATEFROM' | translate }}</mat-label>
+                    <input matInput [matDatepicker]="registrationDateFrom" placeholder="'PAGES.APPS.CARS.REGISRATIONDATEFROM' | translate" formControlName="minRegistrationDate" (dateChange)="AddSearchAttributeByDate(16, 1, $event)">
+                    <mat-datepicker-toggle matSuffix [for]="registrationDateFrom"></mat-datepicker-toggle>
+                    <mat-datepicker #registrationDateFrom></mat-datepicker>
+                  </mat-form-field>
+                  <mat-form-field appearance="outline" class="common-margin min-max-field">
+                    <mat-label>{{ 'PAGES.APPS.CARS.REGISTRATIONDATETO' | translate }}</mat-label>
+                    <input matInput [matDatepicker]="registrationDateTo" placeholder="'PAGES.APPS.CARS.REGISTRATIONDATETO' | translate" formControlName="maxRegistrationDate" (dateChange)="AddSearchAttributeByDate(16, 0, $event)">
+                    <mat-datepicker-toggle matSuffix [for]="registrationDateTo"></mat-datepicker-toggle>
+                    <mat-datepicker #registrationDateTo></mat-datepicker>
+                  </mat-form-field>
+                </section>
+
+                <mat-label>{{ 'PAGES.APPS.CARS.CATALYST' | translate }}?</mat-label>
+                <mat-radio-group class="example-radio-group" formControlName="catalyst" (change)="AddSearchAttribute('catalyst', 17, 3)">
+                  <mat-radio-button class="example-radio-button" value="true"> {{ 'COMMONACTIONS.YES' | translate }} </mat-radio-button>
+                  <mat-radio-button class="example-radio-button" value="false"> {{ 'COMMONACTIONS.NO' | translate }} </mat-radio-button>
+                  <mat-radio-button class="example-radio-button" value="null" [checked]="!searchForm.controls['catalyst'].value"> {{ 'COMMONACTIONS.BOTH' | translate }} </mat-radio-button>
+                </mat-radio-group>
+
+                <br>
+                <mat-label>{{ 'PAGES.APPS.CARS.HYBRIDDRIVE' | translate }}?</mat-label>
+                <mat-radio-group class="example-radio-group" formControlName="hybridDrive" (change)="AddSearchAttribute('hybridDrive', 18, 3)">
+                  <mat-radio-button class="example-radio-button" value="true"> {{ 'COMMONACTIONS.YES' | translate }} </mat-radio-button>
+                  <mat-radio-button class="example-radio-button" value="false"> {{ 'COMMONACTIONS.NO' | translate }} </mat-radio-button>
+                  <mat-radio-button class="example-radio-button" value="null" [checked]="!searchForm.controls['hybridDrive'].value"> {{ 'COMMONACTIONS.BOTH' | translate }} </mat-radio-button>
+                </mat-radio-group>
+
+                <mat-form-field appearance="outline" class="select-field">
+                  <mat-label>{{ 'PAGES.APPS.CARS.FUEL' | translate }}</mat-label>
+                  <mat-select formControlName="fuelId" placeholder="'PAGES.APPS.CARS.FUEL' | translate" (selectionChange)="AddSearchAttributeInSelect(7, 3, $event)">
+                    <mat-option [value]="null">All</mat-option>
+                    <mat-option *ngFor="let fuel of fuels" [value]="fuel"> {{fuel.name}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="select-field">
+                  <mat-label>{{ 'PAGES.APPS.CARS.ENGINEOIL' | translate }}</mat-label>
+                  <mat-select formControlName="engineOilId" placeholder="'PAGES.APPS.CARS.ENGINEOIL' | translate" (selectionChange)="AddSearchAttributeInSelect(13, 3, $event)">
+                    <mat-option [value]="null">All</mat-option>
+                    <mat-option *ngFor="let engineOil of engineOils" [value]="engineOil"> {{engineOil.name}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="select-field">
+                  <mat-label>{{ 'PAGES.APPS.CARS.GEAROIL' | translate }}</mat-label>
+                  <mat-select formControlName="gearOilId" placeholder="'PAGES.APPS.CARS.GEAROIL' | translate" (selectionChange)="AddSearchAttributeInSelect(14, 3, $event)">
+                    <mat-option [value]="null">All</mat-option>
+                    <mat-option *ngFor="let gearOil of gearOils" [value]="gearOil"> {{gearOil.name}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+
+              </mat-expansion-panel>
+              <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                      {{ 'PAGES.APPS.CARS.BUSINESS' | translate }}
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+    
+                <mat-form-field appearance="outline">
+                  <mat-label>{{ 'PAGES.APPS.CARS.LOCATION' | translate }}</mat-label>
+                  <input matInput formControlName="location" (input)="AddSearchAttribute('location', 19, 2)">
+                </mat-form-field>
+
+                <section class="common-section">
+                  <mat-form-field appearance="outline" class="min-max-field">
+                    <mat-label>{{ 'PAGES.APPS.CARS.CREATEDATEFROM' | translate }}</mat-label>
+                    <input matInput [matDatepicker]="createDateFrom" placeholder="'PAGES.APPS.CARS.CREATEDATEFROM' | translate" formControlName="minCreateDate" (dateChange)="AddSearchAttributeByDate(21, 1, $event)">
+                    <mat-datepicker-toggle matSuffix [for]="createDateFrom"></mat-datepicker-toggle>
+                    <mat-datepicker #createDateFrom></mat-datepicker>
+                  </mat-form-field>
+                  <mat-form-field appearance="outline" class="common-margin min-max-field">
+                    <mat-label>{{ 'PAGES.APPS.CARS.CREATEDATETO' | translate }}</mat-label>
+                    <input matInput [matDatepicker]="createDateTo" placeholder="'PAGES.APPS.CARS.CREATEDATETO' | translate" formControlName="maxCreateDate" (dateChange)="AddSearchAttributeByDate(21, 0, $event)">
+                    <mat-datepicker-toggle matSuffix [for]="createDateTo"></mat-datepicker-toggle>
+                    <mat-datepicker #createDateTo></mat-datepicker>
+                  </mat-form-field>
+                </section>
+
+                <section class="common-section">
+                  <mat-form-field appearance="outline" class="min-max-field">
+                    <mat-label>{{ 'PAGES.APPS.CARS.UPDATEDATEFROM' | translate }}</mat-label>
+                    <input matInput [matDatepicker]="updateDateFrom" placeholder="'PAGES.APPS.CARS.UPDATEDATEFROM' | translate" formControlName="minUpdateDate" (dateChange)="AddSearchAttributeByDate(22, 1, $event)">
+                    <mat-datepicker-toggle matSuffix [for]="updateDateFrom"></mat-datepicker-toggle>
+                    <mat-datepicker #updateDateFrom></mat-datepicker>
+                  </mat-form-field>
+                  <mat-form-field appearance="outline" class="common-margin min-max-field">
+                    <mat-label>{{ 'PAGES.APPS.CARS.UPDATEDATETO' | translate }}</mat-label>
+                    <input matInput [matDatepicker]="updateDateTo" placeholder="'PAGES.APPS.CARS.UPDATEDATETO' | translate" formControlName="maxUpdateDate" (dateChange)="AddSearchAttributeByDate(22, 0, $event)">
+                    <mat-datepicker-toggle matSuffix [for]="updateDateTo"></mat-datepicker-toggle>
+                    <mat-datepicker #updateDateTo></mat-datepicker>
+                  </mat-form-field>
+                </section>
+
+                <mat-form-field appearance="outline" class="select-field">
+                  <mat-label>{{ 'PAGES.APPS.CARS.USER' | translate }}</mat-label>
+                  <mat-select formControlName="userId" placeholder="'PAGES.APPS.CARS.USER' | translate" (selectionChange)="AddSearchAttributeInSelect(20, 3, $event)">
+                    <mat-option [value]="null">All</mat-option>
+                    <mat-option *ngFor="let user of users" [value]="user"> {{user.name}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+
+              </mat-expansion-panel>
+            </mat-accordion>
+          </div>
+          
+        </div>
+      </div>
+    </div>

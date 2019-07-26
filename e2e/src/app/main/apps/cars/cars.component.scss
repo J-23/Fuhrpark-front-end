@@ -1,0 +1,36 @@
+@import "src/@fuse/scss/fuse";
+
+#cars {
+
+    .top-bg {
+
+        @include media-breakpoint('lt-md') {
+            height: 256px;
+        }
+    }
+
+    > .center {
+
+        > .header {
+
+            @include media-breakpoint('lt-md') {
+                padding: 8px 0;
+                height: 192px !important;
+                min-height: 192px !important;
+                max-height: 192px !important;
+            }
+        }
+    }
+}
+    
+.active-icon {
+    border-radius: 50%;
+}
+
+.left {
+    max-width: 300px;
+}
+
+.mat-dialog-container {
+    padding: 0 !important;
+}

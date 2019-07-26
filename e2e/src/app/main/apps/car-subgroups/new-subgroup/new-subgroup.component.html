@@ -1,0 +1,40 @@
+<div class="m-24">
+    <form name="carGroupFrom" [formGroup]="carGroupFrom">
+      <div *ngIf="!isEdit" class="h2 my-24">{{ 'PAGES.APPS.CARSUBGROUPS.ADDNEWSUBGROUP' | translate }}</div>
+      <div *ngIf="isEdit" class="h2 my-24">{{ 'PAGES.APPS.CARSUBGROUPS.EDITSUBGROUP' | translate }}</div>
+        
+      <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
+        <mat-label>{{ 'PAGES.APPS.CARSUBGROUPS.NAME' | translate }}</mat-label> 
+        <input matInput formControlName="name">
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline" class="w-100-p">
+        <mat-label>{{'PAGES.APPS.CARSUBGROUPS.ADDCAR' | translate}}</mat-label> 
+        <mat-chip-list #chipList>
+          <mat-chip *ngFor="let car of selectedCars" [selectable]="true" [removable]="true" (removed)="remove(car)">
+            {{car.registrationNumber}} ({{car.model}}, {{car.typ.name}}, {{car.manufacturer.name}})
+            <mat-icon matChipRemove>cancel</mat-icon>
+          </mat-chip>
+              
+          <input #carInput [matAutocomplete]="auto"
+            [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+            [matChipInputAddOnBlur]="true" required>
+        </mat-chip-list>
+        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+          <mat-option *ngFor="let car of cars" [value]="car">
+            {{car.registrationNumber}} ({{car.model}}, {{car.typ.name}}, {{car.manufacturer.name}})
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+  
+      <button *ngIf="!isEdit" mat-raised-button class="teal-300 mt-24 mt-md-0" [disabled]="!carGroupFrom.controls['name'].value ||
+      selectedCars.length == 0" (click)="addCarSubgroup()">
+        <span>{{ 'COMMONACTIONS.SAVE' | translate }}</span>
+      </button>
+      <button *ngIf="isEdit" mat-raised-button class="teal-300 mt-24 mt-md-0" [disabled]="!carGroupFrom.controls['name'].value ||
+      !carGroupFrom.controls['id'].value || selectedCars.length == 0" (click)="updateCarSubgroup()">
+        <span>{{ 'COMMONACTIONS.SAVE' | translate }}</span>
+      </button>
+    </form>
+  </div>
+  
