@@ -17,48 +17,7 @@ export class CarService implements Resolve<any> {
   carBusinessForm: BehaviorSubject<FormGroup> = new BehaviorSubject(null);
 
   routeParams: any;
-  private car: Car = {
-    id: 1,
-    registrationNumber: 'Registration Number',
-    model: 'Car Model',
-    typ: {
-      id: 1,
-      name: 'Car Typ',
-      createDate: new Date()
-    },
-    manufacturer: {
-      id: 1,
-      name: 'Car Manufacturer',
-      createDate: new Date()
-    },
-    color: 'red',
-    chassisNumber: 'chassis number',
-    decommissioned: false,
-    carSpec: {
-      fuel: {
-        id: 1,
-        name: 'Car Fuel',
-        createDate: new Date()
-      },
-      engineCode: 'engine code',
-      gearOil: {
-        id: 1,
-        name: 'Car Gear Oil',
-        createDate: new Date()
-      },
-      engineOil: {
-        id: 1,
-        name: 'Car Engine Oil',
-        createDate: new Date()
-      },
-      catalyst: true,
-      hybridDrive: true
-    },
-    carBusiness: {
-      location: 'location',
-      createDate: new Date()
-    }
-  };
+  private car: Car;
   
   onCarChanged: BehaviorSubject<Car> = new BehaviorSubject(null);
 
@@ -91,6 +50,8 @@ export class CarService implements Resolve<any> {
           resolve(false);
         }
         else {
+
+          
           this._httpClient.get(this.baseURL + `/api/car/detail/${this.routeParams.id}`)
             .subscribe(response => {
   

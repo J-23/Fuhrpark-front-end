@@ -1,4 +1,4 @@
-<div id="cars" class="page-layout simple left-sidebar inner-sidebar inner-scroll">
+<div id="cars" class="page-layout simple left-sidebar inner-sidebar inner-scroll mb-48">
 
     <div class="header teal-300 p-16 p-sm-24" fxLayout="column" fxLayoutAlign="start"
         fxLayout.gt-xs="row" fxLayoutAlign.gt-xs="space-between center">
@@ -13,10 +13,6 @@
                 </span>
             </div>
         </div>
-
-        <button mat-raised-button [routerLink]="'/apps/cars/detail/new'" class="fuse-white mt-24 mt-md-0">
-            <span>{{ 'COMMONACTIONS.ADD' | translate }}</span>
-        </button>
     </div>
     
     <div class="content">
@@ -31,19 +27,19 @@
                 <mat-table #table [dataSource]="dataSource" matSort [@animateStagger]="{value:'50'}" fusePerfectScrollbar>
     
                     <ng-container matColumnDef="registrationNumber">
-                        <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="25%">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>
                             {{ 'PAGES.APPS.CARS.REGISTRATIONNUMBER' | translate }}
                         </mat-header-cell>
-                        <mat-cell *matCellDef="let car" fxFlex="25%">
+                        <mat-cell *matCellDef="let car">
                             <p class="text-truncate">{{car.registrationNumber}}</p>
                         </mat-cell>
                     </ng-container>
     
                     <ng-container matColumnDef="typ">
-                        <mat-header-cell *matHeaderCellDef mat-sort-header fxHide fxShow.gt-xs fxFlex="15%">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header fxHide fxShow.gt-xs>
                             {{ 'PAGES.APPS.CARS.TYP' | translate }}
                         </mat-header-cell>
-                        <mat-cell *matCellDef="let car" fxHide fxShow.gt-xs fxFlex="15%">
+                        <mat-cell *matCellDef="let car" fxHide fxShow.gt-xs>
                             <p class="text-truncate">
                                 {{car.typ.name}}
                             </p>
@@ -51,10 +47,10 @@
                     </ng-container>
     
                     <ng-container matColumnDef="manufacturer">
-                        <mat-header-cell *matHeaderCellDef mat-sort-header fxHide fxShow.gt-xs fxFlex="15%">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header fxHide fxShow.gt-xs>
                             {{ 'PAGES.APPS.CARS.MANUFACTURER' | translate }}
                         </mat-header-cell>
-                        <mat-cell *matCellDef="let car" fxHide fxShow.gt-xs fxFlex="15%">
+                        <mat-cell *matCellDef="let car" fxHide fxShow.gt-xs>
                             <p class="text-truncate">
                                 {{car.manufacturer.name}}
                             </p>
@@ -62,10 +58,10 @@
                     </ng-container>
     
                     <ng-container matColumnDef="chassisNumber">
-                        <mat-header-cell *matHeaderCellDef mat-sort-header fxHide fxShow.gt-sm fxFlex="20%">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header fxHide fxShow.gt-sm>
                             {{ 'PAGES.APPS.CARS.CHASSISNUMBER' | translate }}
                         </mat-header-cell>
-                        <mat-cell *matCellDef="let car" fxHide fxShow.gt-sm fxFlex="20%">
+                        <mat-cell *matCellDef="let car" fxHide fxShow.gt-sm>
                             <p class="text-truncate">
                                 {{car.chassisNumber}}
                             </p>
@@ -73,10 +69,10 @@
                     </ng-container>
     
                     <ng-container matColumnDef="decommissioned">
-                        <mat-header-cell *matHeaderCellDef mat-sort-header fxHide fxShow.gt-sm fxFlex="10%">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header fxHide fxShow.gt-sm>
                             {{ 'PAGES.APPS.CARS.DECOMMISSIONED' | translate }}
                         </mat-header-cell>
-                        <mat-cell *matCellDef="let car" fxHide fxShow.gt-sm fxFlex="10%">
+                        <mat-cell *matCellDef="let car" fxHide fxShow.gt-sm>
                             <p class="text-truncate">
                                 <mat-icon *ngIf="car.decommissioned" class="active-icon green-600 s-16">check</mat-icon>
                                 <mat-icon *ngIf="!car.decommissioned" class="active-icon red-500 s-16">close</mat-icon>
@@ -128,3 +124,7 @@
         </div>
     </div>
 </div>
+
+<button mat-raised-button [routerLink]="'/apps/cars/detail/new'" class="add-car-button teal-300" [@animate]="{value:'*', params:{delay:'300ms',scale:'.2'}}">
+    <span>{{ 'COMMONACTIONS.ADD' | translate }}</span>
+</button>

@@ -7,11 +7,33 @@ import { locale as german } from '../../../../../navigation/i18n/de';
 import { locale as russian } from '../../../../../navigation/i18n/ru';
 import { User } from 'app/main/models/user.model';
 import { UsersService } from 'app/main/apps/users/users.service';
+import { DateAdapter, MAT_DATE_LOCALE, MAT_DATE_FORMATS } from '@angular/material';
+import { MomentDateAdapter } from '@angular/material-moment-adapter';
+
+export const DD_MM_YYYY_FORMAT = {
+  parse: {
+    dateInput: 'DD/MM/YYYY',
+  },
+  display: {
+    dateInput: 'DD/MM/YYYY'
+  }
+};
 
 @Component({
   selector: 'app-car-business',
   templateUrl: './car-business.component.html',
-  styleUrls: ['./car-business.component.scss']
+  styleUrls: ['./car-business.component.scss'],
+  providers: [
+    {
+      provide: DateAdapter,
+      useClass: MomentDateAdapter,
+      deps: [MAT_DATE_LOCALE]
+    },
+    {
+      provide: MAT_DATE_FORMATS,
+      useValue: DD_MM_YYYY_FORMAT
+    }
+  ]
 })
 export class CarBusinessComponent implements OnInit {
 

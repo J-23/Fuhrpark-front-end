@@ -17,30 +17,35 @@
                 
                 <mat-form-field appearance="outline">
                   <mat-label>{{ 'PAGES.APPS.CARS.REGISTRATIONNUMBER' | translate }}</mat-label>
-                  <input matInput formControlName="registrationNumber" (input)="AddSearchAttribute('registrationNumber', 0, 2)">
+                  <input type="text" matInput formControlName="registrationNumber" aria-label="Number" [matAutocomplete]="auto" (input)="AddSearchAttribute('registrationNumber', 0, 2)">
+                  <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" (optionSelected)='AddSeacrhAttributeInAutoComplete(0, 2, $event.option.value)'>
+                    <mat-option *ngFor="let number of carRegistrationNumbers" [value]="number">
+                      {{number}}
+                    </mat-option>
+                  </mat-autocomplete>
                 </mat-form-field>
 
-                <mat-form-field appearance="outline">
+                <!-- <mat-form-field appearance="outline">
                   <mat-label>{{ 'PAGES.APPS.CARS.MODEL' | translate }}</mat-label>
                   <input matInput formControlName="model" (input)="AddSearchAttribute('model', 3, 2)">
-                </mat-form-field>
+                </mat-form-field>-->
 
-                <mat-form-field appearance="outline">
+                <!-- <mat-form-field appearance="outline">
                   <mat-label>{{ 'PAGES.APPS.CARS.COLOR' | translate }}</mat-label>
                   <input matInput formControlName="color" (input)="AddSearchAttribute('color', 4, 2)">
-                </mat-form-field>
+                </mat-form-field>-->
 
-                <mat-form-field appearance="outline">
+                <!-- <mat-form-field appearance="outline">
                   <mat-label>{{ 'PAGES.APPS.CARS.CHASSISNUMBER' | translate }}</mat-label>
                   <input matInput formControlName="chassisNumber" (input)="AddSearchAttribute('chassisNumber', 5, 2)">
-                </mat-form-field>
+                </mat-form-field>-->
 
-                <label>{{ 'PAGES.APPS.CARS.DECOMMISSIONED' | translate }}? </label>
+                <!-- <label>{{ 'PAGES.APPS.CARS.DECOMMISSIONED' | translate }}? </label>
                 <mat-radio-group class="example-radio-group" formControlName="decommissioned" (change)="AddSearchAttribute('decommissioned', 6, 3)">
                   <mat-radio-button class="example-radio-button" value="true"> {{ 'COMMONACTIONS.YES' | translate }} </mat-radio-button>
                   <mat-radio-button class="example-radio-button" value="false"> {{ 'COMMONACTIONS.NO' | translate }} </mat-radio-button>
                   <mat-radio-button class="example-radio-button" value="null" [checked]="!searchForm.controls['decommissioned'].value"> {{ 'COMMONACTIONS.BOTH' | translate }} </mat-radio-button>
-                </mat-radio-group>
+                </mat-radio-group>-->
 
                 <mat-form-field appearance="outline" class="select-field">
                   <mat-label>{{ 'PAGES.APPS.CARS.TYP' | translate }}</mat-label>
@@ -58,8 +63,21 @@
                   </mat-select>
                 </mat-form-field>
 
+                <mat-form-field appearance="outline">
+                  <mat-label>{{ 'PAGES.APPS.CARS.LOCATION' | translate }}</mat-label>
+                  <input matInput formControlName="location" (input)="AddSearchAttribute('location', 19, 2)" autocomplete="off">
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="select-field">
+                  <mat-label>{{ 'PAGES.APPS.CARS.USER' | translate }}</mat-label>
+                  <mat-select formControlName="userId" placeholder="'PAGES.APPS.CARS.USER' | translate" (selectionChange)="AddSearchAttributeInSelect(20, 3, $event)">
+                    <mat-option [value]="null">All</mat-option>
+                    <mat-option *ngFor="let user of users" [value]="user"> {{user.name}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+
               </mat-expansion-panel>
-              <mat-expansion-panel>
+              <!-- <mat-expansion-panel>
                 <mat-expansion-panel-header>
                   <mat-panel-title>
                       {{ 'PAGES.APPS.CARS.SPEC' | translate }}
@@ -235,7 +253,7 @@
                   </mat-select>
                 </mat-form-field>
 
-              </mat-expansion-panel>
+              </mat-expansion-panel>-->
             </mat-accordion>
           </div>
           

@@ -34,3 +34,16 @@
 .mat-dialog-container {
     padding: 0 !important;
 }
+
+.add-car-button {
+    position: absolute;
+    bottom: 35px;
+    right: 92px;
+    z-index: 99;
+
+    @include media-breakpoint('xs') {
+        position: absolute;
+        bottom: 24px;
+        right: 24px;
+    }
+}

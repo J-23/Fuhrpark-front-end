@@ -5,6 +5,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { AppConfig } from 'app/app.config';
 import { Car } from 'app/main/models/car.model';
 import { SearchAttribute } from 'app/main/models/search-attribute.model';
+import { promise } from 'protractor';
 
 @Injectable()
 export class CarsService implements Resolve<any> {
@@ -51,5 +52,15 @@ export class CarsService implements Resolve<any> {
                     resolve(this.cars);
                 }, reject);
         });
+    }
+
+    getCarRegistrationNumbers(): Promise<string[]> {
+      
+      return new Promise((resolve, reject) => {
+        this._httpClient.get(this.baseURL + '/api/car/register-numbers')
+          .subscribe((response: string[]) => {
+            resolve(response);
+          }, reject);
+      });
     }
 }

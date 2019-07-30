@@ -22,6 +22,7 @@ import { CarSpecComponent } from './car-form/car-spec/car-spec.component';
 import { CarGeneralComponent } from './car-form/car-general/car-general.component';
 import { CarSidebarComponent } from './car-sidebar/car-sidebar.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { NextFocusDirective } from 'app/main/directives/next-focus.directive';
 
 const routes = [
   {
@@ -86,7 +87,8 @@ const routes = [
     CarGeneralComponent,
     CarSpecComponent,
     CarBusinessComponent,
-    CarRemoveFormComponent
+    CarRemoveFormComponent,
+    NextFocusDirective
   ],
   providers: [
     CarsService,

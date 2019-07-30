@@ -31,14 +31,14 @@
                     <ng-container matColumnDef="createDate">
                         <mat-header-cell *matHeaderCellDef mat-sort-header fxHide fxShow.gt-xs fxFlex="25%">{{ 'PAGES.APPS.ENGINEOILS.CREATEDATE' | translate }}</mat-header-cell>
                         <mat-cell *matCellDef="let engineOil" fxHide fxShow.gt-xs fxFlex="25%">
-                            <p class="text-truncate">{{engineOil.createDate | date: 'MM/dd/yyyy hh:mm'}}</p>
+                            <p class="text-truncate">{{engineOil.createDate | date: 'dd/MM/yyyy hh:mm'}}</p>
                         </mat-cell>
                     </ng-container>
   
                     <ng-container matColumnDef="updateDate">
                         <mat-header-cell *matHeaderCellDef mat-sort-header fxHide fxShow.gt-xs fxFlex="25%">{{ 'PAGES.APPS.ENGINEOILS.UPDATEDATE' | translate }}</mat-header-cell>
                         <mat-cell *matCellDef="let engineOil" fxHide fxShow.gt-xs fxFlex="25%">
-                            <p class="text-truncate">{{engineOil.updateDate | date: 'MM/dd/yyyy hh:mm'}}</p>
+                            <p class="text-truncate">{{engineOil.updateDate | date: 'dd/MM/yyyy hh:mm'}}</p>
                         </mat-cell>
                     </ng-container>
   

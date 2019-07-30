@@ -33,14 +33,14 @@
                     <ng-container matColumnDef="createDate">
                         <mat-header-cell *matHeaderCellDef mat-sort-header fxHide fxShow.gt-xs fxFlex="25%">{{ 'PAGES.APPS.TYPS.CREATEDATE' | translate }}</mat-header-cell>
                         <mat-cell *matCellDef="let typ" fxHide fxShow.gt-xs fxFlex="25%">
-                            <p class="text-truncate">{{typ.createDate | date: 'MM/dd/yyyy hh:mm'}}</p>
+                            <p class="text-truncate">{{typ.createDate | date: 'dd/MM/yyyy hh:mm'}}</p>
                         </mat-cell>
                     </ng-container>
   
                     <ng-container matColumnDef="updateDate">
                         <mat-header-cell *matHeaderCellDef mat-sort-header fxHide fxShow.gt-xs fxFlex="25%">{{ 'PAGES.APPS.TYPS.UPDATEDATE' | translate }}</mat-header-cell>
                         <mat-cell *matCellDef="let typ" fxHide fxShow.gt-xs fxFlex="25%">
-                            <p class="text-truncate">{{typ.updateDate | date: 'MM/dd/yyyy hh:mm'}}</p>
+                            <p class="text-truncate">{{typ.updateDate | date: 'dd/MM/yyyy hh:mm'}}</p>
                         </mat-cell>
                     </ng-container>
   

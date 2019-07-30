@@ -1,15 +1,15 @@
-<form name="carSpecForm" [formGroup]="carSpecForm" class="car w-100-p" fxLayout="column" fxFlex>
+<form name="carSpecForm" [formGroup]="carSpecForm" class="car w-100-p" fxLayout="column" fxFlex novalidate>
     
   <div fxLayout="row" fxLayoutAlign="space-between">
 
     <mat-form-field appearance="outline" floatLabel="always" fxFlex="47">
       <mat-label>{{ 'PAGES.APPS.CARS.PERFORMANCE' | translate }}</mat-label>
-      <input matInput type="number" formControlName="performance">
+      <input nextFocusElementId="engineDisplacement" matInput type="number" formControlName="performance" autocomplete="off" name="performance">
     </mat-form-field>
 
     <mat-form-field appearance="outline" floatLabel="always" fxFlex="47">
       <mat-label>{{ 'PAGES.APPS.CARS.ENGINEDISPLACEMENT' | translate }}</mat-label>
-      <input matInput type="number" formControlName="engineDisplacement">
+      <input nextFocusElementId="maxSpeed" matInput type="number" formControlName="engineDisplacement" autocomplete="off" name="engineDisplacement">
     </mat-form-field>
   </div>
 
@@ -17,27 +17,27 @@
 
     <mat-form-field appearance="outline" floatLabel="always" fxFlex="47">
       <mat-label>{{ 'PAGES.APPS.CARS.SPEED' | translate }}</mat-label>
-      <input matInput type="number" formControlName="maxSpeed">
+      <input nextFocusElementId="totalWeight" matInput type="number" formControlName="maxSpeed" autocomplete="off" name="maxSpeed">
     </mat-form-field>
 
     <mat-form-field appearance="outline" floatLabel="always" fxFlex="47">
       <mat-label>{{ 'PAGES.APPS.CARS.TOTALWEIGHT' | translate }}</mat-label>
-      <input matInput type="number" formControlName="totalWeight">
+      <input nextFocusElementId="engineCode" matInput type="number" formControlName="totalWeight" autocomplete="off" name="totalWeight">
     </mat-form-field>
   </div>
 
   <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
     <mat-label>{{ 'PAGES.APPS.CARS.ENGINECODE' | translate }}</mat-label> 
-    <input matInput formControlName="engineCode">
+    <input nextFocusElementId="catalyst" matInput formControlName="engineCode" autocomplete="off" name="engineCode">
   </mat-form-field>
 
-  <div fxLayout="row" fxLayoutAlign="space-between">
+  <div fxLayout="row" fxLayoutAlign="space-between" class="pb-48">
     <mat-form-field appearance="outline" floatLabel="always" fxFlex="30">
       <mat-label>{{ 'PAGES.APPS.CARS.FUEL' | translate }}</mat-label>
       <mat-select matNativeControl formControlName="fuel" [compareWith]="fuelCompare" required>
         <mat-option *ngFor="let fuel of fuels" [value]="fuel"> {{fuel.name}}</mat-option>
       </mat-select>
-      <mat-hint align="end"><button mat-button (click)="addNewFuel()">{{ 'COMMONACTIONS.ADDNEWFUEL' | translate }} +</button></mat-hint>
+      <mat-hint align="end" class="mat-hint-color"><button mat-button (click)="addNewFuel()">{{ 'COMMONACTIONS.ADDNEWFUEL' | translate }} +</button></mat-hint>
     </mat-form-field>
 
     <mat-form-field appearance="outline" floatLabel="always" fxFlex="30">
@@ -45,7 +45,7 @@
       <mat-select matNativeControl formControlName="engineOil" [compareWith]="engineOilCompare" required>
         <mat-option *ngFor="let engineOil of engineOils" [value]="engineOil"> {{engineOil.name}}</mat-option>
       </mat-select>
-      <mat-hint align="end"><button mat-button (click)="addNewEngineOil()">{{ 'COMMONACTIONS.ADDNEWENGINEOIL' | translate }} +</button></mat-hint>
+      <mat-hint align="end" class="mat-hint-color"><button mat-button (click)="addNewEngineOil()">{{ 'COMMONACTIONS.ADDNEWENGINEOIL' | translate }} +</button></mat-hint>
     </mat-form-field>
 
     <mat-form-field appearance="outline" floatLabel="always" fxFlex="30">
@@ -53,17 +53,17 @@
       <mat-select matNativeControl formControlName="gearOil" [compareWith]="gearOilCompare" required>
         <mat-option *ngFor="let gearOil of gearOils" [value]="gearOil"> {{gearOil.name}}</mat-option>
       </mat-select>
-      <mat-hint align="end"><button mat-button (click)="addNewGearOil()">{{ 'COMMONACTIONS.ADDNEWGEAROIL' | translate }} +</button></mat-hint>
+      <mat-hint align="end" class="mat-hint-color"><button mat-button (click)="addNewGearOil()">{{ 'COMMONACTIONS.ADDNEWGEAROIL' | translate }} +</button></mat-hint>
     </mat-form-field>
   </div>
 
   <section class="example-section">
     <label class="example-margin">{{ 'PAGES.APPS.CARS.CATALYST' | translate }}: </label>
-    <mat-radio-group formControlName="catalyst">
-      <mat-radio-button class="example-margin" value="true" [checked]="carSpecForm.controls['catalyst'].value == true"> 
+    <mat-radio-group formControlName="catalyst" name="catalyst">
+      <mat-radio-button nextFocusElementId="hybridDrive" class="example-margin" value="true" [checked]="carSpecForm.controls['catalyst'].value == true"> 
         {{ 'COMMONACTIONS.YES' | translate }} 
       </mat-radio-button>
-      <mat-radio-button class="example-margin" value="false" [checked]="!carSpecForm.controls['catalyst'].value 
+      <mat-radio-button nextFocusElementId="hybridDrive" class="example-margin" value="false" [checked]="!carSpecForm.controls['catalyst'].value 
         || carSpecForm.controls['catalyst'].value == false"> 
         {{ 'COMMONACTIONS.NO' | translate }} 
       </mat-radio-button>
@@ -72,11 +72,11 @@
 
   <section class="example-section">
     <label class="example-margin">{{ 'PAGES.APPS.CARS.HYBRIDDRIVE' | translate }}: </label>
-    <mat-radio-group formControlName="hybridDrive">
-      <mat-radio-button class="example-margin" value="true" [checked]="carSpecForm.controls['hybridDrive'].value == true"> 
+    <mat-radio-group formControlName="hybridDrive" name="hybridDrive">
+      <mat-radio-button nextFocusElementId="productionDate" class="example-margin" value="true" [checked]="carSpecForm.controls['hybridDrive'].value == true"> 
         {{ 'COMMONACTIONS.YES' | translate }} 
       </mat-radio-button>
-      <mat-radio-button class="example-margin" value="false" [checked]="carSpecForm.controls['hybridDrive'].value == false"> 
+      <mat-radio-button nextFocusElementId="productionDate" class="example-margin" value="false" [checked]="carSpecForm.controls['hybridDrive'].value == false"> 
         {{ 'COMMONACTIONS.NO' | translate }} 
       </mat-radio-button>
     </mat-radio-group>
@@ -86,14 +86,14 @@
 
     <mat-form-field appearance="outline" fxFlex="47">
       <mat-label>{{ 'PAGES.APPS.CARS.PRODUCTINDATE' | translate }}</mat-label>
-      <input matInput [matDatepicker]="productionDate" formControlName="productionDate">
+      <input matInput [matDatepicker]="productionDate" formControlName="productionDate" autocomplete="off" nextFocusElementId="registrationDate" name="productionDate">
       <mat-datepicker-toggle matSuffix [for]="productionDate"></mat-datepicker-toggle>
       <mat-datepicker #productionDate></mat-datepicker>
     </mat-form-field>
 
     <mat-form-field appearance="outline" fxFlex="47">
       <mat-label>{{ 'PAGES.APPS.CARS.REGISTRATIONDATE' | translate }}</mat-label>
-      <input matInput [matDatepicker]="registrationDate" formControlName="registrationDate">
+      <input matInput [matDatepicker]="registrationDate" formControlName="registrationDate" autocomplete="off" nextFocusElementId="performance" name="registrationDate">
       <mat-datepicker-toggle matSuffix [for]="registrationDate"></mat-datepicker-toggle>
       <mat-datepicker #registrationDate></mat-datepicker>
     </mat-form-field>

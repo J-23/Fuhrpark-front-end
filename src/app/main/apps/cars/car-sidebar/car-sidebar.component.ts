@@ -35,6 +35,8 @@ export class CarSidebarComponent implements OnInit {
   gearOils: GearOil[] = [];
   users: User[] = [];
 
+  carRegistrationNumbers: string[] = [];
+
   searchParameters: SearchAttribute[] = [];
 
   constructor(private _formBuilder: FormBuilder,
@@ -86,6 +88,8 @@ export class CarSidebarComponent implements OnInit {
       .catch();
 
     this.searchForm = this.cretaeForm();
+
+    this.getCarRegistrationNumbers();
   }
 
   cretaeForm(): FormGroup {
@@ -129,6 +133,7 @@ export class CarSidebarComponent implements OnInit {
 
   AddSearchAttribute(controlName: string, fieldName: CarFieldSearch, comparingType: ComparingType) {
     
+    console.log('test')
     clearTimeout(this.timer);
     this.timer = setTimeout(() => { 
 
@@ -197,5 +202,33 @@ export class CarSidebarComponent implements OnInit {
 
       this.carsService.onSearchAttributesChanged.next(this.searchParameters);
     }, 200);
+  }
+
+  AddSeacrhAttributeInAutoComplete(fieldName: CarFieldSearch, comparingType: ComparingType, value){
+    clearTimeout(this.timer);
+    this.timer = setTimeout(() => { 
+
+      this.searchParameters = this.searchParameters.filter(param => {
+        return !(param.carField == fieldName && param.comparingType == comparingType);
+      });
+
+      if (value) {
+        this.searchParameters.push({
+          data: value,
+          carField: fieldName,
+          comparingType: comparingType
+        });
+      }
+
+      this.carsService.onSearchAttributesChanged.next(this.searchParameters);
+    }, 200);
+  }
+
+  getCarRegistrationNumbers() {
+    this.carsService.getCarRegistrationNumbers()
+      .then(numbers => {
+        this.carRegistrationNumbers = numbers;
+      })
+      .catch();
   }
 }

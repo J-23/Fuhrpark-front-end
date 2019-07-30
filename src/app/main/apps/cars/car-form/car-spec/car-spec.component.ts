@@ -4,16 +4,37 @@ import { Fuel } from 'app/main/models/fuel.model';
 import { EngineOil } from 'app/main/models/engine-oil.model';
 import { GearOil } from 'app/main/models/gear-oil.model';
 import { MainFormComponent } from 'app/main/apps/main-form/main-form.component';
-import { MatDialog, MatSnackBar } from '@angular/material';
+import { MatDialog, MatSnackBar, DateAdapter, MAT_DATE_LOCALE, MAT_DATE_FORMATS } from '@angular/material';
 import { FuelsService } from 'app/main/apps/fuels/fuels.service';
 import { EngineOilsService } from 'app/main/apps/engine-oils/engine-oils.service';
 import { GearOilsService } from 'app/main/apps/gear-oils/gear-oils.service';
 import { TranslateService } from '@ngx-translate/core';
+import { MomentDateAdapter } from '@angular/material-moment-adapter';
+
+export const DD_MM_YYYY_FORMAT = {
+  parse: {
+    dateInput: 'DD/MM/YYYY',
+  },
+  display: {
+    dateInput: 'DD/MM/YYYY'
+  }
+};
 
 @Component({
   selector: 'app-car-spec',
   templateUrl: './car-spec.component.html',
-  styleUrls: ['./car-spec.component.scss']
+  styleUrls: ['./car-spec.component.scss'],
+  providers: [
+    {
+      provide: DateAdapter,
+      useClass: MomentDateAdapter,
+      deps: [MAT_DATE_LOCALE]
+    },
+    {
+      provide: MAT_DATE_FORMATS,
+      useValue: DD_MM_YYYY_FORMAT
+    }
+  ]
 })
 export class CarSpecComponent implements OnInit {
 

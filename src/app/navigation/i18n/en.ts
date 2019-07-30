@@ -10,7 +10,7 @@ export const locale = {
             'TYPS': 'Typs',
             'FUELS': 'Fuels',
             'ENGINEOILS': 'Engine Oils',
-            'GEAROILS': 'Gear Oils',
+            'GEAROILS': 'Car wheels',
             'USERS': 'Users'
         },
         'PAGES': {
@@ -154,16 +154,16 @@ export const locale = {
                     'NAME': 'Name',
                     'CREATEDATE': 'Create date',
                     'UPDATEDATE': 'Update date',
-                    'ADD': 'Add gear oil',
-                    'ADDNEW': 'Add new gear oil',
-                    'EDIT': 'Edit gear oil',
-                    'REMOVEQUESTION': 'Do you really want to delete this gear oil?',
-                    'ADDSUCCESS': 'Gear oil is added',
-                    'EDITSUCCESS': 'Gear oil is edited',
-                    'REMOVESUCCESS': 'Gear oil is removed',
-                    'SAMENAME': 'Gear oil with same name exists',
-                    'NOTEXIST': "This gear oil doesn't exist",
-                    'ISUSED' : 'This gear oil is used in the description of the car'
+                    'ADD': 'Add car wheel',
+                    'ADDNEW': 'Add new car wheel',
+                    'EDIT': 'Edit car wheel',
+                    'REMOVEQUESTION': 'Do you really want to delete this car wheel?',
+                    'ADDSUCCESS': 'Car wheel is added',
+                    'EDITSUCCESS': 'Car wheel is edited',
+                    'REMOVESUCCESS': 'Car wheel is removed',
+                    'SAMENAME': 'Car wheel with same name exists',
+                    'NOTEXIST': "This car wheel doesn't exist",
+                    'ISUSED' : 'This car wheel is used in the description of the car'
                 },
                 'USERS': {
                     'NAME': 'Name',

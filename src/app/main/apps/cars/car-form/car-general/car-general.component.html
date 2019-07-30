@@ -1,36 +1,36 @@
-<form name="carGeneralForm" [formGroup]="carGeneralForm" class="car w-100-p" fxLayout="column" fxFlex>
+<form name="carGeneralForm" [formGroup]="carGeneralForm" class="car w-100-p" fxLayout="column" fxFlex novalidate>
 
   <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
     <mat-label>{{ 'PAGES.APPS.CARS.REGISTRATIONNUMBER' | translate }}</mat-label> 
-    <input matInput formControlName="registrationNumber" required>
+    <input nextFocusElementId="model" matInput formControlName="registrationNumber" required name="registrationNumber">
   </mat-form-field>
 
   <div fxLayout="row" fxLayoutAlign="space-between">
 
     <mat-form-field appearance="outline" floatLabel="always" fxFlex="47">
       <mat-label>{{ 'PAGES.APPS.CARS.MODEL' | translate }}</mat-label>
-      <input matInput formControlName="model">
+      <input nextFocusElementId="color" matInput formControlName="model" name="model" autocomplete="off">
     </mat-form-field>
 
     <mat-form-field appearance="outline" floatLabel="always" fxFlex="47">
       <mat-label>{{ 'PAGES.APPS.CARS.COLOR' | translate }}</mat-label>
-      <input matInput formControlName="color">
+      <input nextFocusElementId="chassisNumber" matInput formControlName="color" name="color" autocomplete="off">
     </mat-form-field>
 
   </div>
 
   <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
     <mat-label>{{ 'PAGES.APPS.CARS.CHASSISNUMBER' | translate }}</mat-label> 
-    <input matInput formControlName="chassisNumber">
+    <input nextFocusElementId="decommissioned" matInput formControlName="chassisNumber" name="chassisNumber" autocomplete="off">
   </mat-form-field>
 
   <section class="example-section">
     <label class="example-margin">{{ 'PAGES.APPS.CARS.DECOMMISSIONED' | translate }}?</label>
-    <mat-radio-group formControlName="decommissioned">
-      <mat-radio-button class="example-margin" value="true" [checked]="carGeneralForm.controls['decommissioned'].value == true"> 
+    <mat-radio-group formControlName="decommissioned" name="decommissioned">
+      <mat-radio-button nextFocusElementId="registrationNumber" class="example-margin" value="true" [checked]="carGeneralForm.controls['decommissioned'].value == true"> 
         {{ 'COMMONACTIONS.YES' | translate }} 
       </mat-radio-button>
-      <mat-radio-button class="example-margin" value="false" [checked]="!carGeneralForm.controls['decommissioned'].value 
+      <mat-radio-button nextFocusElementId="registrationNumber" class="example-margin" value="false" [checked]="!carGeneralForm.controls['decommissioned'].value 
         || carGeneralForm.controls['decommissioned'].value == false"> 
         {{ 'COMMONACTIONS.NO' | translate }} 
       </mat-radio-button>
@@ -41,18 +41,18 @@
 
     <mat-form-field appearance="outline" floatLabel="always" fxFlex="47">
       <mat-label>{{ 'PAGES.APPS.CARS.TYP' | translate }}</mat-label>
-      <mat-select matNativeControl formControlName="typ" [compareWith]="typCompare" required>
+      <mat-select matNativeControl formControlName="typ" [compareWith]="typCompare" required name="typ">
         <mat-option *ngFor="let typ of typs" [value]="typ">{{typ.name}}</mat-option>
       </mat-select>
-      <mat-hint align="end"><button mat-button (click)="addNewTyp()">{{ 'COMMONACTIONS.ADDNEWTYPE' | translate }} +</button></mat-hint>
+      <mat-hint align="end" class="mat-hint-color"><button mat-button (click)="addNewTyp()">{{ 'COMMONACTIONS.ADDNEWTYPE' | translate }} +</button></mat-hint>
     </mat-form-field>
 
     <mat-form-field appearance="outline" floatLabel="always" fxFlex="47">
       <mat-label>{{ 'PAGES.APPS.CARS.MANUFACTURER' | translate }}</mat-label>
-      <mat-select matNativeControl formControlName="manufacturer" [compareWith]="manufacturerCompare" required>
+      <mat-select matNativeControl formControlName="manufacturer" [compareWith]="manufacturerCompare" required name="manufacturer"> 
         <mat-option *ngFor="let manufacturer of manufacturers" [value]="manufacturer">{{manufacturer.name}}</mat-option>
       </mat-select>
-      <mat-hint align="end"><button mat-button (click)="addNewManufaturer()">{{ 'COMMONACTIONS.ADDNEWMANUFACTURER' | translate }} +</button></mat-hint>
+      <mat-hint align="end" class="mat-hint-color"><button mat-button (click)="addNewManufaturer()">{{ 'COMMONACTIONS.ADDNEWMANUFACTURER' | translate }} +</button></mat-hint>
     </mat-form-field>
   </div>
 </form>

@@ -1,8 +1,8 @@
-<form name="carBusinessForm" [formGroup]="carBusinessForm" class="car w-100-p" fxLayout="column" fxFlex>
+<form name="carBusinessForm" [formGroup]="carBusinessForm" class="car w-100-p" fxLayout="column" fxFlex novalidate>
 
   <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
     <mat-label>{{'PAGES.APPS.CARS.LOCATION' | translate}}</mat-label> 
-    <input matInput formControlName="location">
+    <input nextFocusElementId="location" matInput formControlName="location" autocomplete="off" name="location">
   </mat-form-field>
 
   <mat-form-field appearance="outline" floatLabel="always">
@@ -16,14 +16,14 @@
 
     <mat-form-field appearance="outline" fxFlex="47">
       <mat-label>{{'PAGES.APPS.CARS.CREATEDATE' | translate}}</mat-label>
-      <input matInput [matDatepicker]="createDate" formControlName="createDate" required>
+      <input matInput [matDatepicker]="createDate" formControlName="createDate" required autocomplete="off">
       <mat-datepicker-toggle matSuffix [for]="createDate"></mat-datepicker-toggle>
       <mat-datepicker #createDate></mat-datepicker>
     </mat-form-field>
 
     <mat-form-field appearance="outline" fxFlex="47">
       <mat-label>{{'PAGES.APPS.CARS.UPDATEDATE' | translate}}</mat-label>
-      <input matInput [matDatepicker]="updateDate" formControlName="updateDate">
+      <input matInput [matDatepicker]="updateDate" formControlName="updateDate" autocomplete="off">
       <mat-datepicker-toggle matSuffix [for]="updateDate"></mat-datepicker-toggle>
       <mat-datepicker #updateDate></mat-datepicker>
     </mat-form-field>

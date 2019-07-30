@@ -8,7 +8,7 @@
 }
 
 ::ng-deep .mat-expansion-panel-body {
-    max-height: 45vh !important;
+    max-height: 60vh !important;
     overflow-y: scroll !important; 
     overflow-x: hidden;
 }
@@ -40,7 +40,7 @@
     height: 55px;
 }
 
-@include media-breakpoint('sm') {
+@include media-breakpoint('lt-sm') {
 
     .search-panel {
         display: none;

@@ -10,12 +10,12 @@
 
   <div mat-dialog-content class="p-24 pb-0 m-0" fusePerfectScrollbar>
 
-      <form [formGroup]="form">
+      <form [formGroup]="form" novalidate>
 
           <div fxLayout="row" fxLayoutAlign="start start">
               <mat-form-field appearance="outline" fxFlex>
                   <mat-label>{{ 'PAGES.APPS.MANUFACTURERS.NAME' | translate }}</mat-label>
-                  <input name="name" formControlName="name" matInput required>
+                  <input name="name" formControlName="name" matInput required autocomplete="off">
               </mat-form-field>
           </div>
       </form>

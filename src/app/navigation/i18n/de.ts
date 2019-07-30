@@ -10,7 +10,7 @@
             'TYPS': 'Typ',
             'FUELS': 'Kraftstoff',
             'ENGINEOILS': 'Motoröl',
-            'GEAROILS': 'Getriebeöl',
+            'GEAROILS': 'Reifengröße hinzufügen',
             'USERS': 'Nutzer'
         },
         'PAGES': {
@@ -154,16 +154,16 @@
                     'NAME': 'Name',
                     'CREATEDATE': 'Erstellungsdatum',
                     'UPDATEDATE': 'Änderungsdatum',
-                    'ADD': 'Getriebeöl hinzufügen',
-                    'ADDNEW': 'Neues Getriebeöl hinzufügen',
-                    'EDIT': 'Getriebeöl ändern',
-                    'REMOVEQUESTION': 'Wollen Sie dieses Getriebeöl wirklich löschen?',
-                    'ADDSUCCESS': 'Getriebeöl wurde hinzugefügt',
-                    'EDITSUCCESS': 'Getriebeöl  wurde geändert',
-                    'REMOVESUCCESS': 'Getriebeöl wurde gelöscht',
-                    'SAMENAME': 'Die Bezeichnung für das Getriebeöl wird schon verwendet',
-                    'NOTEXIST': "Dieses Getriebeöl wurde nicht gefunden",
-                    'ISUSED' : 'Dieses Getriebeöl wird in der Beschreibung eines Autos verwendet'
+                    'ADD': 'Reifengröße hinzufügen hinzufügen',
+                    'ADDNEW': 'Neues Reifengröße hinzufügen hinzufügen',
+                    'EDIT': 'Reifengröße hinzufügen ändern',
+                    'REMOVEQUESTION': 'Wollen Sie dieses reifengröße hinzufügen wirklich löschen?',
+                    'ADDSUCCESS': 'Reifengröße hinzufügen wurde hinzugefügt',
+                    'EDITSUCCESS': 'Reifengröße hinzufügen  wurde geändert',
+                    'REMOVESUCCESS': 'Reifengröße hinzufügen wurde gelöscht',
+                    'SAMENAME': 'Die Bezeichnung für das reifengröße hinzufügen wird schon verwendet',
+                    'NOTEXIST': "Dieses reifengröße hinzufügen wurde nicht gefunden",
+                    'ISUSED' : 'Dieses reifengröße hinzufügen wird in der Beschreibung eines Autos verwendet'
                 },
                 'USERS': {
                     'NAME': 'Name',

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, HostListener, Renderer2, Renderer, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Typ } from 'app/main/models/typ.model';
 import { Manufacturer } from 'app/main/models/manufacturer.model';
@@ -18,6 +18,8 @@ export class CarGeneralComponent implements OnInit {
 
   @Input() carGeneralForm: FormGroup;
 
+  typCounter: number = 0;
+  
   typs: Typ[] = [];
   manufacturers: Manufacturer[] = [];
 
@@ -27,7 +29,8 @@ export class CarGeneralComponent implements OnInit {
     private typsService: TypsService,
     private manufacturersService: ManufacturersService,
     private translateService: TranslateService,
-    private _matSnackBar: MatSnackBar) { }
+    private _matSnackBar: MatSnackBar,
+    private renderer: Renderer) { }
 
   trueFalseOptions = [ 
     {
@@ -145,5 +148,29 @@ export class CarGeneralComponent implements OnInit {
 
   manufacturerCompare(manufacturer1: Manufacturer, manufacturer2: Manufacturer) {
     return manufacturer1 && manufacturer2 && manufacturer1.id == manufacturer2.id;
+  }
+
+  onKeyDownEnter(event) {
+
+    event.preventDefault();
+
+    let newEvent = new KeyboardEvent('keydown', 
+    { 
+      altKey: event.altKey, 
+      bubbles: event.bubbles, 
+      cancelable: event.cancelable, 
+      code: 'Tab', 
+      composed: event.composed, 
+      ctrlKey: event.ctrlKey,
+      detail: event.detail,
+      key: 'Tab',
+      location: event.location,
+      metaKey: event.metaKey,
+      repeat: event.repeat,
+      shiftKey: event.shiftKey,
+      view: event.view
+    });
+    
+    event.target.dispatchEvent(newEvent);
   }
 }
