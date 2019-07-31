@@ -26,6 +26,8 @@ export class CarFormComponent implements OnInit, OnDestroy {
 
   private _unsubscribeAll: Subject<any>;
 
+  private needToClean: boolean = false;
+
   constructor(private _formBuilder: FormBuilder,
         private _matSnackBar: MatSnackBar,
         private carService: CarService,
@@ -75,36 +77,30 @@ export class CarFormComponent implements OnInit, OnDestroy {
       if (car != null) {
         this.car = car;
         this.pageType = 'edit';
-
-        this.setCarGeneralForm();
-        this.setCarSpecForm();
-        this.setCarBusinessForm();
       }
       else {
         this.pageType = 'new';
-
-        this.carService.carGeneralForm.subscribe(form => {
-          if (form) {
-            this.carGeneralForm = form;
-          }
-        });
-
-        this.carService.carSpecForm.subscribe(form => {
-          if (form) {
-            this.carSpecForm = form;
-          }
-        });
-
-        this.carService.carBusinessForm.subscribe(form => {
-          if (form) {
-            this.carBusinessForm = form;
-          }
-        });
       }
       
-      this.carService.carGeneralForm.next(this.carGeneralForm);
-      this.carService.carSpecForm.next(this.carSpecForm);
-      this.carService.carBusinessForm.next(this.carBusinessForm);
+      this.carService.lastChanges.subscribe(lastPageType => {
+        
+        if (!lastPageType && lastPageType !== this.pageType) {
+          this.cleanForms();
+        }
+        
+        if (this.car != null) {
+          this.setCarGeneralForm();
+          this.setCarSpecForm();
+          this.setCarBusinessForm();
+        }
+        
+        this.carService.carGeneralForm.next(this.carGeneralForm);
+        this.carService.carSpecForm.next(this.carSpecForm);
+        this.carService.carBusinessForm.next(this.carBusinessForm);
+        
+      });
+
+      this.carService.lastChanges.next(this.pageType);
     })
   }
 
@@ -112,45 +108,52 @@ export class CarFormComponent implements OnInit, OnDestroy {
     this._unsubscribeAll.next();
     this._unsubscribeAll.complete();
 
-    if (this.pageType == 'edit') {
-      this.carGeneralForm.patchValue({
-        id: null,
-        registrationNumber: null,
-        model: null,
-        color: null,
-        chassisNumber: null,
-        decommissioned: null,
-        typ: null,
-        manufacturer: null
-      });
+    if (this.needToClean) {
+      
+      this.needToClean = false;
 
-      this.carSpecForm.patchValue({
-        performance: null,
-        engineDisplacement: null,
-        maxSpeed: null,
-        totalWeight: null,
-        engineCode: null,
-        engineOil: null,
-        fuel: null,
-        gearOil: null,
-        productionDate: null,
-        registrationDate: null,
-        catalyst: true,
-        hybridDrive: true
-      });
-
-      this.carBusinessForm.patchValue({
-        location: null,
-        user: null,
-        createDate: null,
-        updateDate: null
-      });
+      this.cleanForms();
 
       this.carService.carGeneralForm.next(this.carGeneralForm);
       this.carService.carSpecForm.next(this.carSpecForm);
       this.carService.carBusinessForm.next(this.carBusinessForm);
     }
 
+  }
+
+  cleanForms() {
+    this.carGeneralForm.patchValue({
+      id: null,
+      registrationNumber: null,
+      model: null,
+      color: null,
+      chassisNumber: null,
+      decommissioned: null,
+      typ: null,
+      manufacturer: null
+    });
+
+    this.carSpecForm.patchValue({
+      performance: null,
+      engineDisplacement: null,
+      maxSpeed: null,
+      totalWeight: null,
+      engineCode: null,
+      engineOil: null,
+      fuel: null,
+      gearOil: null,
+      productionDate: null,
+      registrationDate: null,
+      catalyst: true,
+      hybridDrive: true
+    });
+
+    this.carBusinessForm.patchValue({
+      location: null,
+      user: null,
+      createDate: null,
+      updateDate: null
+    });
   }
 
   setCarGeneralForm() {
@@ -233,6 +236,7 @@ export class CarFormComponent implements OnInit, OnDestroy {
             this.createSnackBar(message);
           });
 
+          this.needToClean = true;
           this.router.navigate(['/apps/cars/list']);
         })
         .catch(res => {
@@ -287,6 +291,7 @@ export class CarFormComponent implements OnInit, OnDestroy {
             this.createSnackBar(message);
           });
 
+          this.needToClean = true;
           this.router.navigate(['/apps/cars/list']);
         })
         .catch();
