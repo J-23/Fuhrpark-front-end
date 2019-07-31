@@ -43,7 +43,7 @@ export const locale = {
                     'HYBRIDDRIVE': 'Гибрид',
                     'FUEL': 'Топливо',
                     'ENGINEOIL': 'Моторное масло',
-                    'GEAROIL': 'Редукторное масло',
+                    'CARWHEEL': 'Колеса',
                     'LOCATION': 'Местоположение',
                     'USER': 'Пользователь',
                     'CREATEDATEFROM': 'Создана с',
@@ -236,7 +236,8 @@ export const locale = {
             'ADDNEWMANUFACTURER': 'Добавить нового производителя',
             'ADDNEWFUEL': 'Добавить новое топливо',
             'ADDNEWENGINEOIL': 'Добавить новое моторное масло',
-            'ADDNEWGEAROIL': 'Добавить новое редукторное масло',
+            'ADDNEWCARWHEEL': 'Добавить новые колеса',
+            'ADDNEWUSER': 'Добавить нового пользователя',
             'CONFIRM': 'Подтверждение',
             'CANCEL': 'Отмена',
             'ALL': 'Все'

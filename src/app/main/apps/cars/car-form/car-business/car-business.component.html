@@ -5,11 +5,12 @@
     <input nextFocusElementId="location" matInput formControlName="location" autocomplete="off" name="location">
   </mat-form-field>
 
-  <mat-form-field appearance="outline" floatLabel="always">
+  <mat-form-field appearance="outline" floatLabel="always" class="pb-48">
     <mat-label>{{'PAGES.APPS.CARS.USER' | translate}}</mat-label>
     <mat-select matNativeControl formControlName="user" [compareWith]="userCompare">
       <mat-option *ngFor="let user of users" [value]="user">{{user.name}}</mat-option>
     </mat-select>
+    <mat-hint align="end" class="mat-hint-color"><button mat-button (click)="addNewUser()">{{ 'COMMONACTIONS.ADDNEWUSER' | translate }} +</button></mat-hint>
   </mat-form-field>
 
   <div fxLayout="row" fxLayoutAlign="space-between">

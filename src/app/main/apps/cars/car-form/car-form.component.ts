@@ -1,11 +1,8 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
-import { Location } from '@angular/common';
 
 import { fuseAnimations } from '@fuse/animations';
-import { FuseUtils } from '@fuse/utils';
 import { Car } from 'app/main/models/car.model';
 import { MatSnackBar } from '@angular/material';
 import { CarService } from './car.service';
@@ -85,13 +82,75 @@ export class CarFormComponent implements OnInit, OnDestroy {
       }
       else {
         this.pageType = 'new';
+
+        this.carService.carGeneralForm.subscribe(form => {
+          if (form) {
+            this.carGeneralForm = form;
+          }
+        });
+
+        this.carService.carSpecForm.subscribe(form => {
+          if (form) {
+            this.carSpecForm = form;
+          }
+        });
+
+        this.carService.carBusinessForm.subscribe(form => {
+          if (form) {
+            this.carBusinessForm = form;
+          }
+        });
       }
+      
+      this.carService.carGeneralForm.next(this.carGeneralForm);
+      this.carService.carSpecForm.next(this.carSpecForm);
+      this.carService.carBusinessForm.next(this.carBusinessForm);
     })
   }
 
   ngOnDestroy() {
     this._unsubscribeAll.next();
     this._unsubscribeAll.complete();
+
+    if (this.pageType == 'edit') {
+      this.carGeneralForm.patchValue({
+        id: null,
+        registrationNumber: null,
+        model: null,
+        color: null,
+        chassisNumber: null,
+        decommissioned: null,
+        typ: null,
+        manufacturer: null
+      });
+
+      this.carSpecForm.patchValue({
+        performance: null,
+        engineDisplacement: null,
+        maxSpeed: null,
+        totalWeight: null,
+        engineCode: null,
+        engineOil: null,
+        fuel: null,
+        gearOil: null,
+        productionDate: null,
+        registrationDate: null,
+        catalyst: true,
+        hybridDrive: true
+      });
+
+      this.carBusinessForm.patchValue({
+        location: null,
+        user: null,
+        createDate: null,
+        updateDate: null
+      });
+
+      this.carService.carGeneralForm.next(this.carGeneralForm);
+      this.carService.carSpecForm.next(this.carSpecForm);
+      this.carService.carBusinessForm.next(this.carBusinessForm);
+    }
+
   }
 
   setCarGeneralForm() {
@@ -105,8 +164,6 @@ export class CarFormComponent implements OnInit, OnDestroy {
       typ: this.car.typ,
       manufacturer: this.car.manufacturer
     });
-
-    this.carService.setCarGeneralForm(this.carGeneralForm);
   }
   
   setCarSpecForm() {
@@ -124,8 +181,6 @@ export class CarFormComponent implements OnInit, OnDestroy {
       catalyst: this.car.carSpec.catalyst,
       hybridDrive: this.car.carSpec.hybridDrive
     });
-
-    this.carService.setCarSpecForm(this.carSpecForm);
   }
 
   setCarBusinessForm() {
@@ -135,8 +190,6 @@ export class CarFormComponent implements OnInit, OnDestroy {
       createDate: this.car.carBusiness.createDate,
       updateDate: this.car.carBusiness.updateDate
     });
-
-    this.carService.setCarBusinessForm(this.carBusinessForm);
   }
 
   updateCar() {

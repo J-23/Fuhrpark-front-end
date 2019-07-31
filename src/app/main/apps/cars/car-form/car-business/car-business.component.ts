@@ -1,14 +1,13 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { FuseTranslationLoaderService } from '@fuse/services/translation-loader.service';
 
-import { locale as english } from '../../../../../navigation/i18n/en';
-import { locale as german } from '../../../../../navigation/i18n/de';
-import { locale as russian } from '../../../../../navigation/i18n/ru';
 import { User } from 'app/main/models/user.model';
 import { UsersService } from 'app/main/apps/users/users.service';
-import { DateAdapter, MAT_DATE_LOCALE, MAT_DATE_FORMATS } from '@angular/material';
+import { DateAdapter, MAT_DATE_LOCALE, MAT_DATE_FORMATS, MatSnackBar, MatDialog } from '@angular/material';
 import { MomentDateAdapter } from '@angular/material-moment-adapter';
+import { CarService } from '../car.service';
+import { MainFormComponent } from 'app/main/apps/main-form/main-form.component';
+import { TranslateService } from '@ngx-translate/core';
 
 export const DD_MM_YYYY_FORMAT = {
   parse: {
@@ -37,17 +36,30 @@ export const DD_MM_YYYY_FORMAT = {
 })
 export class CarBusinessComponent implements OnInit {
 
-  @Input() carBusinessForm: FormGroup;
+  carBusinessForm: FormGroup;
   
   users: User[] = [];
   
-  constructor(private _fuseTranslationLoaderService: FuseTranslationLoaderService,
-    private usersService: UsersService) { 
-    this._fuseTranslationLoaderService.loadTranslations(english, german, russian);
+  dialogRef: any;
 
+  constructor(private usersService: UsersService,
+    private carService: CarService,
+    private _matDialog: MatDialog,
+    private _matSnackBar: MatSnackBar,
+    private translateService: TranslateService) { 
   }
 
   ngOnInit() {
+    
+    this.getUsers();
+
+    this.carService.carBusinessForm.subscribe(form => {
+      this.carBusinessForm = form;
+    });
+  }
+
+  getUsers() {
+    
     this.usersService.getUsers()
       .then(users => {
         this.users = users;
@@ -57,5 +69,47 @@ export class CarBusinessComponent implements OnInit {
 
   userCompare(user1: User, user2: User) {
     return user1 && user2 && user1.id == user2.id;
+  }
+
+  addNewUser() {
+    this.dialogRef = this._matDialog.open(MainFormComponent, {
+      panelClass: 'form-dialog',
+      data: {
+        dialogTitle: 'PAGES.APPS.USERS.ADD'
+      }
+    });
+
+    this.dialogRef.afterClosed()
+      .subscribe((userForm: FormGroup) => {
+        if (userForm && userForm.valid) {
+
+          var user = {
+            name: userForm.controls['name'].value
+          };
+
+          this.usersService.addUser(user)
+            .then(() => {
+              
+              this.getUsers();
+              
+              this.translateService.get('PAGES.APPS.USERS.ADDSUCCESS').subscribe(message => {
+                this.createSnackBar(message);
+              });
+              
+            })
+            .catch(res => {
+              if (res && res.status && res.status == 403) {
+                this.createSnackBar(res.error);
+              }
+            });
+        }
+      });
+  }
+
+  createSnackBar(message: string) {
+    this._matSnackBar.open(message, 'OK', {
+      verticalPosition: 'top',
+      duration: 2000
+    });
   }
 }

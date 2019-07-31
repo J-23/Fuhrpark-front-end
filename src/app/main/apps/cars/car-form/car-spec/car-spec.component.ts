@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Fuel } from 'app/main/models/fuel.model';
 import { EngineOil } from 'app/main/models/engine-oil.model';
@@ -10,6 +10,7 @@ import { EngineOilsService } from 'app/main/apps/engine-oils/engine-oils.service
 import { GearOilsService } from 'app/main/apps/gear-oils/gear-oils.service';
 import { TranslateService } from '@ngx-translate/core';
 import { MomentDateAdapter } from '@angular/material-moment-adapter';
+import { CarService } from '../car.service';
 
 export const DD_MM_YYYY_FORMAT = {
   parse: {
@@ -38,7 +39,7 @@ export const DD_MM_YYYY_FORMAT = {
 })
 export class CarSpecComponent implements OnInit {
 
-  @Input() carSpecForm: FormGroup;
+  carSpecForm: FormGroup;
   
   fuels: Fuel[] = [];
   engineOils: EngineOil[] = [];
@@ -51,13 +52,18 @@ export class CarSpecComponent implements OnInit {
     private engineOilsService: EngineOilsService,
     private gearOilsService: GearOilsService,
     private translateService: TranslateService,
-    private _matSnackBar: MatSnackBar) { }
+    private _matSnackBar: MatSnackBar,
+    private carService: CarService) { }
 
   ngOnInit() {
     
     this.getFuels();
     this.getEngineOils();
     this.getGearOils();
+
+    this.carService.carSpecForm.subscribe(form => {
+      this.carSpecForm = form;
+    });
   }
 
   getFuels() {

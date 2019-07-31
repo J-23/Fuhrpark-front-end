@@ -3,9 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { AppConfig } from 'app/app.config';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { Car } from 'app/main/models/car.model';
-import { Typ } from 'app/main/models/typ.model';
 
 @Injectable()
 export class CarService implements Resolve<any> {
@@ -24,8 +23,7 @@ export class CarService implements Resolve<any> {
   baseURL: string;
 
   constructor(private _httpClient: HttpClient,
-    private appConfig: AppConfig,
-    private _formBuilder: FormBuilder) {
+    private appConfig: AppConfig) {
 
     this.baseURL = this.appConfig['config']['URL'];
   }
@@ -81,18 +79,6 @@ export class CarService implements Resolve<any> {
             resolve(response);
           }, reject);
       })
-    }
-
-    setCarGeneralForm(carGeneralForm: FormGroup) {
-      this.carGeneralForm.next(carGeneralForm);
-    }
-
-    setCarSpecForm(carSpecForm: FormGroup) {
-      this.carSpecForm.next(carSpecForm);
-    }
-
-    setCarBusinessForm(carBusinessForm: FormGroup) {
-      this.carBusinessForm.next(carBusinessForm);
     }
 
     removeCar(carRemoveSettings): Promise<any> {

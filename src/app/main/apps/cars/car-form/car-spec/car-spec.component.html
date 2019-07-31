@@ -49,15 +49,15 @@
     </mat-form-field>
 
     <mat-form-field appearance="outline" floatLabel="always" fxFlex="30">
-      <mat-label>{{ 'PAGES.APPS.CARS.GEAROIL' | translate }}</mat-label>
+      <mat-label>{{ 'PAGES.APPS.CARS.CARWHEEL' | translate }}</mat-label>
       <mat-select matNativeControl formControlName="gearOil" [compareWith]="gearOilCompare" required>
         <mat-option *ngFor="let gearOil of gearOils" [value]="gearOil"> {{gearOil.name}}</mat-option>
       </mat-select>
-      <mat-hint align="end" class="mat-hint-color"><button mat-button (click)="addNewGearOil()">{{ 'COMMONACTIONS.ADDNEWGEAROIL' | translate }} +</button></mat-hint>
+      <mat-hint align="end" class="mat-hint-color"><button mat-button (click)="addNewGearOil()">{{ 'COMMONACTIONS.ADDNEWCARWHEEL' | translate }} +</button></mat-hint>
     </mat-form-field>
   </div>
 
-  <section class="example-section">
+  <!-- <section class="example-section">
     <label class="example-margin">{{ 'PAGES.APPS.CARS.CATALYST' | translate }}: </label>
     <mat-radio-group formControlName="catalyst" name="catalyst">
       <mat-radio-button nextFocusElementId="hybridDrive" class="example-margin" value="true" [checked]="carSpecForm.controls['catalyst'].value == true"> 
@@ -68,7 +68,7 @@
         {{ 'COMMONACTIONS.NO' | translate }} 
       </mat-radio-button>
     </mat-radio-group>
-  </section>
+  </section>-->
 
   <section class="example-section">
     <label class="example-margin">{{ 'PAGES.APPS.CARS.HYBRIDDRIVE' | translate }}: </label>

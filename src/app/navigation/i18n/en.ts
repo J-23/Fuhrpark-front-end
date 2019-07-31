@@ -43,7 +43,7 @@ export const locale = {
                     'HYBRIDDRIVE': 'Hybrid drive',
                     'FUEL': 'Fuel',
                     'ENGINEOIL': 'Engine oil',
-                    'GEAROIL': 'Gear oil',
+                    'CARWHEEL': 'Car wheels',
                     'LOCATION': 'Location',
                     'USER': 'User',
                     'CREATEDATEFROM': 'Create date from',
@@ -236,7 +236,8 @@ export const locale = {
             'ADDNEWMANUFACTURER': 'Add new manufaturer',
             'ADDNEWFUEL': 'Add new fuel',
             'ADDNEWENGINEOIL': 'Add new engine oil',
-            'ADDNEWGEAROIL': 'Add new gear oil',
+            'ADDNEWCARWHEEL': 'Add new car wheels',
+            'ADDNEWUSER': 'Add new user',
             'CONFIRM': 'Confirm',
             'CANCEL': 'Cancel',
             'ALL': 'All'

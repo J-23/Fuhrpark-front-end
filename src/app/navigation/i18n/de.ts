@@ -43,7 +43,7 @@
                     'HYBRIDDRIVE': 'Hybridantrieb',
                     'FUEL': 'Kraftstoff',
                     'ENGINEOIL': 'Motoröl',
-                    'GEAROIL': 'Getriebeöl',
+                    'CARWHEEL': 'Reifengröße',
                     'LOCATION': 'Standort',
                     'USER': 'Nutzer',
                     'CREATEDATEFROM': 'Erstellungsdatum von:',
@@ -236,7 +236,8 @@
             'ADDNEWMANUFACTURER': 'Hersteller hinzufügen',
             'ADDNEWFUEL': 'Kraftstoff hinzufügen',
             'ADDNEWENGINEOIL': 'Motoröl hinzufügen',
-            'ADDNEWGEAROIL': 'Getriebeöl hinzufügen',
+            'ADDNEWCARWHEEL': 'Reifengröße hinzufügen',
+            'ADDNEWUSER': 'Nutzer hinzufügen',
             'CONFIRM': 'Bestätigung',
             'CANCEL': 'Abbruch',
             'ALL': 'Аlles'
