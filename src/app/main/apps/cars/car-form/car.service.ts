@@ -9,7 +9,7 @@ import { Car } from 'app/main/models/car.model';
 @Injectable()
 export class CarService implements Resolve<any> {
 
-  lastChanges: BehaviorSubject<string> = new BehaviorSubject(null);
+  lastPageType : BehaviorSubject<string> = new BehaviorSubject(null);
 
   carGeneralForm: BehaviorSubject<FormGroup> = new BehaviorSubject(null);
 

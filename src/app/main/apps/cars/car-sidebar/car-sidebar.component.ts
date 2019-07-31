@@ -133,7 +133,6 @@ export class CarSidebarComponent implements OnInit {
 
   AddSearchAttribute(controlName: string, fieldName: CarFieldSearch, comparingType: ComparingType) {
     
-    console.log('test')
     clearTimeout(this.timer);
     this.timer = setTimeout(() => { 
 

@@ -81,27 +81,36 @@ export class CarFormComponent implements OnInit, OnDestroy {
       else {
         this.pageType = 'new';
       }
-      
-      this.carService.lastChanges.subscribe(lastPageType => {
-        
-        if (!lastPageType && lastPageType !== this.pageType) {
-          this.cleanForms();
-        }
-        
+    });
+
+    this.carService.lastPageType.subscribe(lastPageType => {
+      if (lastPageType !== this.pageType) {
+        this.cleanForms();
         if (this.car != null) {
           this.setCarGeneralForm();
           this.setCarSpecForm();
           this.setCarBusinessForm();
         }
-        
-        this.carService.carGeneralForm.next(this.carGeneralForm);
-        this.carService.carSpecForm.next(this.carSpecForm);
-        this.carService.carBusinessForm.next(this.carBusinessForm);
-        
-      });
+      }
+      else {
+        this.carService.carGeneralForm.subscribe(form => {
+          this.carGeneralForm = form;
+        });
 
-      this.carService.lastChanges.next(this.pageType);
-    })
+        this.carService.carSpecForm.subscribe(form => {
+          this.carSpecForm = form;
+        });
+
+        this.carService.carBusinessForm.subscribe(form => {
+          this.carBusinessForm = form;
+        });
+      }
+    });
+    
+    this.carService.carGeneralForm.next(this.carGeneralForm);
+    this.carService.carSpecForm.next(this.carSpecForm);
+    this.carService.carBusinessForm.next(this.carBusinessForm);
+    this.carService.lastPageType.next(this.pageType);
   }
 
   ngOnDestroy() {
@@ -111,7 +120,6 @@ export class CarFormComponent implements OnInit, OnDestroy {
     if (this.needToClean) {
       
       this.needToClean = false;
-
       this.cleanForms();
 
       this.carService.carGeneralForm.next(this.carGeneralForm);
