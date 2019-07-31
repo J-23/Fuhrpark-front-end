@@ -10,7 +10,7 @@ export const locale = {
             'TYPS': 'Типы',
             'FUELS': 'Топлива',
             'ENGINEOILS': 'Моторные масла',
-            'GEAROILS': 'Колеса',
+            'CARWHEELS': 'Колеса',
             'USERS': 'Пользователи'
         },
         'PAGES': {
@@ -150,7 +150,7 @@ export const locale = {
                     'NOTEXIST': "Данного моторного масла не существует",
                     'ISUSED' : 'Данное моторное масло используется в описании машины'
                 },
-                'GEAROILS': {
+                'CARWHEELS': {
                     'NAME': 'Название',
                     'CREATEDATE': 'Дата создания',
                     'UPDATEDATE': 'Дата изменения',

@@ -10,7 +10,7 @@
             'TYPS': 'Typ',
             'FUELS': 'Kraftstoff',
             'ENGINEOILS': 'Motoröl',
-            'GEAROILS': 'Reifengröße hinzufügen',
+            'CARWHEELS': 'Reifengröße',
             'USERS': 'Nutzer'
         },
         'PAGES': {
@@ -150,20 +150,20 @@
                     'NOTEXIST': "Dieses Motoröl wurde nicht gefunden",
                     'ISUSED' : 'Dieses Motoröl wird in der Beschreibung eines Autos verwendet'
                 },
-                'GEAROILS': {
+                'CARWHEELS': {
                     'NAME': 'Name',
                     'CREATEDATE': 'Erstellungsdatum',
                     'UPDATEDATE': 'Änderungsdatum',
-                    'ADD': 'Reifengröße hinzufügen hinzufügen',
-                    'ADDNEW': 'Neues Reifengröße hinzufügen hinzufügen',
-                    'EDIT': 'Reifengröße hinzufügen ändern',
-                    'REMOVEQUESTION': 'Wollen Sie dieses reifengröße hinzufügen wirklich löschen?',
-                    'ADDSUCCESS': 'Reifengröße hinzufügen wurde hinzugefügt',
-                    'EDITSUCCESS': 'Reifengröße hinzufügen  wurde geändert',
-                    'REMOVESUCCESS': 'Reifengröße hinzufügen wurde gelöscht',
-                    'SAMENAME': 'Die Bezeichnung für das reifengröße hinzufügen wird schon verwendet',
-                    'NOTEXIST': "Dieses reifengröße hinzufügen wurde nicht gefunden",
-                    'ISUSED' : 'Dieses reifengröße hinzufügen wird in der Beschreibung eines Autos verwendet'
+                    'ADD': 'Reifengröße hinzufügen',
+                    'ADDNEW': 'Neues Reifengröße hinzufügen',
+                    'EDIT': 'Reifengröße ändern',
+                    'REMOVEQUESTION': 'Wollen Sie dieses reifengröße wirklich löschen?',
+                    'ADDSUCCESS': 'Reifengröße wurde hinzugefügt',
+                    'EDITSUCCESS': 'Reifengröße wurde geändert',
+                    'REMOVESUCCESS': 'Reifengröße wurde gelöscht',
+                    'SAMENAME': 'Die Bezeichnung für das reifengröße wird schon verwendet',
+                    'NOTEXIST': "Dieses reifengröße wurde nicht gefunden",
+                    'ISUSED' : 'Dieses reifengröße wird in der Beschreibung eines Autos verwendet'
                 },
                 'USERS': {
                     'NAME': 'Name',

@@ -41,9 +41,15 @@
     right: 92px;
     z-index: 99;
 
+    @include media-breakpoint('sm') {
+        position: absolute;
+        bottom: 5px;
+        right: 92px;
+    }
+
     @include media-breakpoint('xs') {
         position: absolute;
-        bottom: 24px;
+        bottom: 12px;
         right: 24px;
     }
 }

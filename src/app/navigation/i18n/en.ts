@@ -10,7 +10,7 @@ export const locale = {
             'TYPS': 'Typs',
             'FUELS': 'Fuels',
             'ENGINEOILS': 'Engine Oils',
-            'GEAROILS': 'Car wheels',
+            'CARWHEELS': 'Car wheels',
             'USERS': 'Users'
         },
         'PAGES': {
@@ -150,7 +150,7 @@ export const locale = {
                     'NOTEXIST': "This engine oil doesn't exist",
                     'ISUSED' : 'This engine oil is used in the description of the car'
                 },
-                'GEAROILS': {
+                'CARWHEELS': {
                     'NAME': 'Name',
                     'CREATEDATE': 'Create date',
                     'UPDATEDATE': 'Update date',

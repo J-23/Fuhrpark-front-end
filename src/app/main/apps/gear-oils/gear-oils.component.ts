@@ -53,7 +53,7 @@ export class GearOilsComponent implements OnInit {
     this.dialogRef = this._matDialog.open(MainFormComponent, {
       panelClass: 'form-dialog',
       data: {
-        dialogTitle: 'PAGES.APPS.GEAROILS.ADD'
+        dialogTitle: 'PAGES.APPS.CARWHEELS.ADD'
       }
     });
 
@@ -70,7 +70,7 @@ export class GearOilsComponent implements OnInit {
             .then(() => {
               this.dataSource = new FilesDataSource(this.gearOilsService, this.paginator, this.sort);
               
-              this.translateService.get('PAGES.APPS.GEAROILS.ADDSUCCESS').subscribe(message => {
+              this.translateService.get('PAGES.APPS.CARWHEELS.ADDSUCCESS').subscribe(message => {
                 this.createSnackBar(message);
               });
               
@@ -89,7 +89,7 @@ export class GearOilsComponent implements OnInit {
       panelClass: 'form-dialog',
       data: {
         action: 'new',
-        dialogTitle: 'PAGES.APPS.GEAROILS.EDIT',
+        dialogTitle: 'PAGES.APPS.CARWHEELS.EDIT',
         object: gearOil
       }
     });
@@ -108,7 +108,7 @@ export class GearOilsComponent implements OnInit {
             .then(() => {
               this.dataSource = new FilesDataSource(this.gearOilsService, this.paginator, this.sort);
 
-              this.translateService.get('PAGES.APPS.GEAROILS.EDITSUCCESS').subscribe(message => {
+              this.translateService.get('PAGES.APPS.CARWHEELS.EDITSUCCESS').subscribe(message => {
                 this.createSnackBar(message);
               });
             })
@@ -122,7 +122,7 @@ export class GearOilsComponent implements OnInit {
   }
 
   deleteGearOil(gearOilId) {
-    this.translateService.get('PAGES.APPS.GEAROILS.REMOVEQUESTION').subscribe(message => {
+    this.translateService.get('PAGES.APPS.CARWHEELS.REMOVEQUESTION').subscribe(message => {
       this.confirmDialogRef = this._matDialog.open(ConfirmFormComponent, {
         disableClose: false
       });
@@ -135,7 +135,7 @@ export class GearOilsComponent implements OnInit {
             .then(() => {
               this.dataSource = new FilesDataSource(this.gearOilsService, this.paginator, this.sort);
 
-              this.translateService.get('PAGES.APPS.GEAROILS.REMOVESUCCESS').subscribe(message => {
+              this.translateService.get('PAGES.APPS.CARWHEELS.REMOVESUCCESS').subscribe(message => {
                 this.createSnackBar(message);
               });
             })

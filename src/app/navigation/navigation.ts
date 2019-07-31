@@ -65,8 +65,8 @@ export const navigation: FuseNavigation[] = [
             },
             {
                 id       : 'gearOils',
-                title    : 'Reifengröße hinzufügen',
-                translate: 'NAV.GEAROILS',
+                title    : 'Reifengröße',
+                translate: 'NAV.CARWHEELS',
                 type     : 'item',
                 url      : '/apps/gear-oils'
             }

@@ -6,13 +6,13 @@
         <div fxLayout="row" fxLayoutAlign="start center">
             <div class="logo" fxLayout="row" fxLayoutAlign="start center">
                 <span class="logo-text h1" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
-                    {{ 'NAV.GEAROILS' | translate }}
+                    {{ 'NAV.CARWHEELS' | translate }}
                 </span>
             </div>
         </div>
 
         <button mat-raised-button class="fuse-white mt-24 mt-md-0" (click)="addNewGearOil()">
-            <span>{{ 'PAGES.APPS.GEAROILS.ADD' | translate }}</span>
+            <span>{{ 'PAGES.APPS.CARWHEELS.ADD' | translate }}</span>
         </button>
     </div>
   
@@ -22,21 +22,21 @@
                 <mat-table #table [dataSource]="dataSource" matSort [@animateStagger]="{value:'50'}" fusePerfectScrollbar>
   
                     <ng-container matColumnDef="name">
-                        <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="40%">{{ 'PAGES.APPS.GEAROILS.NAME' | translate }}</mat-header-cell>
+                        <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="40%">{{ 'PAGES.APPS.CARWHEELS.NAME' | translate }}</mat-header-cell>
                         <mat-cell *matCellDef="let gearOil" fxFlex="40%">
                             <p class="text-truncate">{{gearOil.name}}</p>
                         </mat-cell>
                     </ng-container>
   
                     <ng-container matColumnDef="createDate">
-                        <mat-header-cell *matHeaderCellDef mat-sort-header fxHide fxShow.gt-xs fxFlex="25%">{{ 'PAGES.APPS.GEAROILS.CREATEDATE' | translate }}</mat-header-cell>
+                        <mat-header-cell *matHeaderCellDef mat-sort-header fxHide fxShow.gt-xs fxFlex="25%">{{ 'PAGES.APPS.CARWHEELS.CREATEDATE' | translate }}</mat-header-cell>
                         <mat-cell *matCellDef="let gearOil" fxHide fxShow.gt-xs fxFlex="25%">
                             <p class="text-truncate">{{gearOil.createDate | date: 'dd/MM/yyyy hh:mm'}}</p>
                         </mat-cell>
                     </ng-container>
   
                     <ng-container matColumnDef="updateDate">
-                        <mat-header-cell *matHeaderCellDef mat-sort-header  fxHide fxShow.gt-xs fxFlex="25%">{{ 'PAGES.APPS.GEAROILS.UPDATEDATE' | translate }}</mat-header-cell>
+                        <mat-header-cell *matHeaderCellDef mat-sort-header  fxHide fxShow.gt-xs fxFlex="25%">{{ 'PAGES.APPS.CARWHEELS.UPDATEDATE' | translate }}</mat-header-cell>
                         <mat-cell *matCellDef="let gearOil"  fxHide fxShow.gt-xs fxFlex="25%">
                             <p class="text-truncate">{{gearOil.updateDate | date: 'dd/MM/yyyy hh:mm'}}</p>
                         </mat-cell>

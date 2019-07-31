@@ -156,7 +156,7 @@ export class CarSpecComponent implements OnInit {
     this.dialogRef = this._matDialog.open(MainFormComponent, {
       panelClass: 'form-dialog',
       data: {
-        dialogTitle: 'PAGES.APPS.GEAROILS.ADD'
+        dialogTitle: 'PAGES.APPS.CARWHEELS.ADD'
       }
     });
 
@@ -173,7 +173,7 @@ export class CarSpecComponent implements OnInit {
             .then(() => {
               this.getGearOils();
               
-              this.translateService.get('PAGES.APPS.GEAROILS.ADDSUCCESS').subscribe(message => {
+              this.translateService.get('PAGES.APPS.CARWHEELS.ADDSUCCESS').subscribe(message => {
                 this.createSnackBar(message);
               });
               
